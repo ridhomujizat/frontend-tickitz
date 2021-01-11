@@ -1,0 +1,32 @@
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/variable.scss";
+
+#now-showing {
+  background-color: $bg-gray;
+  transition: 0.2s ease 0s;
+
+  .now-showing-text {
+    h4 {
+      @include text-large;
+      font-weight: 700;
+      color: $primary;
+      @include min-tablet() {
+        &::after {
+          content: "";
+          width: 100px;
+
+          display: block;
+          margin-left: 28px;
+          padding-top: 10px;
+          border-bottom: 3px solid $purple;
+          transition: all 0.5s ease;
+        }
+      }
+    }
+
+    a {
+      @include link-small;
+      font-weight: 700;
+    }
+  }
+}

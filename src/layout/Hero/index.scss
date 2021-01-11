@@ -1,0 +1,55 @@
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/variable.scss";
+#hero {
+  height: 85vh;
+
+  /*===============
+    Hero Text
+    ================*/
+  h1 {
+    @include text-medium;
+    color: $gray-400;
+    span {
+      @include display-medium-bold;
+      color: $primary;
+    }
+  }
+
+  /*===============
+    Hero Image
+    ================*/
+  .hero-content-img {
+    height: 460px;
+    width: 371px;
+
+    .img-hero {
+      height: 80%;
+      padding: 0;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 6px;
+        bottom: 0;
+        right: 5px;
+        z-index: 1;
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      img {
+        height: 100%;
+        width: 90%;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 5px 10px 13px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    @include phone() {
+      height: 350px;
+      width: 282.52px;
+    }
+  }
+}

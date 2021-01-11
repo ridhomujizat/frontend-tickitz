@@ -1,0 +1,29 @@
+$purple: #5f2eea;
+$blue: #1cc8ee;
+$pink: #ed2e7e;
+$green: #00ba88;
+$yellow: #f4b740;
+
+$black: #14142b;
+$gray-600: #4e4b66;
+$gray-500: #6e7191;
+$gray-400: #a0a3bd;
+$gray-300: #dedede;
+$gray-200: #eff0f6;
+$gray-100: #f7f7fc;
+$white: #f7f7fc;
+
+$theme-colors: (
+  "primary": #5f2eea,
+  "secondary": $gray-200,
+  "danger": $pink,
+  "warning": $yellow,
+  "light": $gray-200,
+);
+
+$heading: $black;
+$link: $black;
+$text: $gray-600;
+$text-light: $gray-400;
+$primary: $purple;
+$bg-gray: $gray-200;

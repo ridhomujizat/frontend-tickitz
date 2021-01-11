@@ -1,0 +1,49 @@
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/variable.scss";
+
+.movie-now-showing {
+  border-radius: 8px;
+  margin: 15px;
+  width: 195px;
+
+  &-img {
+    margin: auto;
+    padding: 15px;
+    border: 3px solid white;
+    height: 280px;
+    width: 195px;
+    object-fit: cover;
+    border-radius: 8px;
+
+    img {
+      border-radius: 8px;
+      height: 240px;
+      width: 160px;
+      object-fit: cover;
+    }
+  }
+
+  &-detail {
+    display: none;
+    padding: 5px 15px 15px;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+    h3 {
+      @include text-medium;
+      color: $black;
+    }
+    p {
+      @include text-x-small;
+      color: $text-light;
+    }
+  }
+
+  &:hover {
+    background-color: $white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.17);
+
+    .movie-now-showing-detail {
+      display: block;
+    }
+  }
+}

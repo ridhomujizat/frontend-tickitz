@@ -1,0 +1,16 @@
+@import "../../../assets/scss/mixin.scss";
+@import "../../../assets/scss/variable.scss";
+
+.input-text {
+  label {
+    @include text-small;
+  }
+  input {
+    padding: 22px 24px;
+
+    ::placeholder {
+      @include text-small;
+      color: $gray-400;
+    }
+  }
+}

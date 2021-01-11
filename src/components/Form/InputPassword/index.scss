@@ -1,0 +1,26 @@
+@import "../../../assets/scss/mixin.scss";
+@import "../../../assets/scss/variable.scss";
+
+.input-password {
+  position: relative;
+  label {
+    @include text-small;
+  }
+  input {
+    padding: 22px 24px;
+
+    ::placeholder {
+      @include text-small;
+      color: $gray-400;
+    }
+  }
+
+  p {
+    cursor: pointer;
+    font-size: 25px;
+    color: $gray-400;
+    position: absolute;
+    top: 35px;
+    right: 15px;
+  }
+}

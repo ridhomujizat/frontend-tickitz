@@ -1,0 +1,153 @@
+/*==================================
+Query
+===================================*/
+
+@mixin phone {
+  @media (max-width: 540px) {
+    @content;
+  }
+}
+@mixin min-tablet {
+  @media (min-width: 540px) {
+    @content;
+  }
+}
+@mixin max-tablet {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+@mixin min-desktop {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+/*==================================
+Font Size
+===================================*/
+
+@mixin display-large {
+  font-size: 64px;
+  font-weight: 400;
+
+  @include phone() {
+    font-size: 48px;
+  }
+}
+
+@mixin display-medium {
+  font-size: 48px;
+  font-weight: 400px;
+
+  @include phone() {
+    font-size: 32px;
+  }
+}
+
+@mixin display-small {
+  font-size: 32px;
+  font-weight: 400;
+
+  @include phone() {
+    font-size: 24px;
+  }
+}
+@mixin display-large-bold {
+  font-size: 64px;
+  font-weight: 700;
+
+  @include phone() {
+    font-size: 48px;
+  }
+}
+
+@mixin display-medium-bold {
+  font-size: 48px;
+  font-weight: 700;
+
+  @include phone() {
+    font-size: 32px;
+  }
+}
+
+@mixin display-small-bold {
+  font-size: 32px;
+  font-weight: 700;
+
+  @include phone() {
+    font-size: 24px;
+  }
+}
+
+@mixin text-large {
+  font-size: 24px;
+  font-weight: 400;
+
+  @include phone() {
+    font-size: 20px;
+  }
+}
+
+@mixin text-medium {
+  font-size: 18px;
+  font-weight: 400;
+
+  @include phone() {
+    font-size: 16px;
+  }
+}
+
+@mixin text-small {
+  font-size: 16px;
+  font-weight: 400;
+
+  @include phone() {
+    font-size: 14px;
+  }
+}
+
+@mixin text-x-small {
+  font-size: 14px;
+  font-weight: 400;
+
+  @include phone() {
+    font-size: 13px;
+  }
+}
+
+@mixin link-large {
+  font-size: 24px;
+  font-weight: 600;
+
+  @include phone() {
+    font-size: 20px;
+  }
+}
+
+@mixin link-medium {
+  font-size: 18px;
+  font-weight: 600;
+
+  @include phone() {
+    font-size: 16px;
+  }
+}
+
+@mixin link-small {
+  font-size: 16px;
+  font-weight: 600;
+
+  @include phone() {
+    font-size: 14px;
+  }
+}
+
+@mixin link-x-small {
+  font-size: 14px;
+  font-weight: 600;
+
+  @include phone() {
+    font-size: 12px;
+  }
+}
