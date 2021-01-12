@@ -14,15 +14,15 @@ const movieList = [
   },
   {
     id: "2",
-    title: "Spider-Man: Homecoming",
-    genre: "Adventure, Action, Sci-Fi",
-    date: "June 28, 2017",
-    directed: "Jon Watss",
-    duration: "2 hours 13 minutes",
+    title: "Avengers: Endgame",
+    genre: "Action, Adventure, Drama ",
+    date: "April 2029, 2019",
+    directed: " Anthony Russo",
+    duration: "3 hours 1 minutes",
     casts: "Tom Holland, Michael Keaton, Robert Downey Jr., ...",
     synopsis:
       "Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, under the watchful eye of his new mentor Tony Stark, Peter tries to fall back into his normal daily routine - distracted by thoughts of proving himself to be more than just your friendly neighborhood Spider-Man - but when the Vulture emerges as a new villain, everything that Peter holds most important will be threatened.",
-    images: "/images/movie/spider-movie.png",
+    images: "/images/movie/avenger-endgame.jpg",
     status: "show",
   },
   {

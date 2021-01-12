@@ -13,7 +13,7 @@ class NowShowing extends Component {
 
   componentDidMount() {
     let testData = this.state.movieList
-      .filter((item) => item.status == "show")
+      .filter((item) => item.status === "show")
       .map((data, index) => data.id);
     console.log(testData);
   }
@@ -32,7 +32,7 @@ class NowShowing extends Component {
           <Row className="pb-5">
             <Col className="slider">
               {this.state.movieList
-                .filter((data) => data.status == "show")
+                .filter((data) => data.status === "show")
                 .map((item) => {
                   return (
                     <CardNowShow

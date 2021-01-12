@@ -9,22 +9,24 @@ import {
   Form,
   FormControl,
   Button,
-  Image,
 } from "react-bootstrap";
+import { LogoPurple } from "../../components/Logo";
 
-import logo from "../../assets/images/logo/logo-purple.png";
+import dProfile from "../../assets/images/user.jpeg";
 
 class Header extends Component {
+  state = {
+    isUser: false,
+  };
   render() {
+    const { isUser } = this.state;
     return (
       <>
         <div className="fixed-top header">
           <Container>
             <Navbar expand="lg">
               <Navbar.Brand>
-                <Link to="/sign-up">
-                  <Image src={logo} />
-                </Link>
+                <LogoPurple size="900" />
               </Navbar.Brand>
               <Navbar className="navbar-collapse collapse">
                 <Nav className="mr-auto">
@@ -70,9 +72,15 @@ class Header extends Component {
                       </svg>
                     </Button>
                   </Form>
-                  <Link to="/sign-up" className="btn btn-primary btn-sign-up">
-                    Sign Up
-                  </Link>
+                  {isUser ? (
+                    <Link to="/profile" className="user-profile">
+                      <img src={dProfile} alt="User Profile" />
+                    </Link>
+                  ) : (
+                    <Link to="/sign-up" className="btn btn-primary btn-sign-up">
+                      Sign Up
+                    </Link>
+                  )}
                 </div>
               </Navbar>
 

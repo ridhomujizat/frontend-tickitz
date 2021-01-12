@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 import Header from "../../components/Header";
 import Hero from "../../layout/Hero";
-import CardNowShow from "../../components/CardNowShow";
 import NowShowing from "../../layout/NowShowing";
+import DescriptionMovie from "../../layout/DescriptionMovie";
 
 class Home extends Component {
   render() {
@@ -12,7 +12,7 @@ class Home extends Component {
         <Header />
         <Hero />
         <NowShowing />
-        <Hero />
+        <DescriptionMovie />
       </>
     );
   }
