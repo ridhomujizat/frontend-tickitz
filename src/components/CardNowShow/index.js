@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./index.scss";
-import Spider from "../../assets/spider-movie.png";
 
-import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class CardNowShow extends Component {
@@ -17,13 +15,13 @@ class CardNowShow extends Component {
           <p>{this.props.genre}</p>
           <Link
             className="btn btn-primary btn-block"
-            to={`/order/${this.props.id}`}
+            to={`/movie-detail/${this.props.id}`}
           >
             Detail
           </Link>
           <Link
             className="btn btn-outline-primary btn-block"
-            to={`/cinema/${this.props.id}`}
+            to={`/cinema-order/${this.props.id}`}
           >
             Detail
           </Link>

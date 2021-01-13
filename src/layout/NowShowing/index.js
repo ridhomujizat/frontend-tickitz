@@ -11,12 +11,12 @@ class NowShowing extends Component {
     movieList: MovieList,
   };
 
-  componentDidMount() {
-    let testData = this.state.movieList
-      .filter((item) => item.status === "show")
-      .map((data, index) => data.id);
-    console.log(testData);
-  }
+  // componentDidMount() {
+  //   let testData = this.state.movieList
+  //     .filter((item) => item.status === "show")
+  //     .map((data, index) => data.id);
+  //   console.log(testData);
+  // }
   render() {
     return (
       <div id="now-showing">

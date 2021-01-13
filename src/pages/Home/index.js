@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import Header from "../../components/Header";
 import Hero from "../../layout/Hero";
 import NowShowing from "../../layout/NowShowing";
-import DescriptionMovie from "../../layout/DescriptionMovie";
+import UpComing from "../../layout/UpComing";
+import JoinSubcribe from "../../layout/JoinSubcribe";
+import Footer from "../../components/Footer";
 
 class Home extends Component {
   render() {
@@ -12,7 +14,9 @@ class Home extends Component {
         <Header />
         <Hero />
         <NowShowing />
-        <DescriptionMovie />
+        <UpComing />
+        <JoinSubcribe />
+        <Footer />
       </>
     );
   }

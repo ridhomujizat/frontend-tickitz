@@ -1,0 +1,183 @@
+@import "../../assets/scss/variable.scss";
+@import "../../assets/scss/mixin.scss";
+
+#result-ticket {
+  background-color: $gray-300;
+  .ticket-show {
+    border-radius: 15px;
+    background-color: $white;
+    padding: 40px;
+    @include phone() {
+      background-color: $gray-300;
+      padding: 30px;
+    }
+
+    h5 {
+      font-weight: 600;
+      @include phone() {
+        display: none;
+      }
+    }
+
+    .ticket {
+      position: relative;
+
+      .heading-ticket {
+        background-color: $purple;
+        border-radius: 15px 15px 0 0;
+        color: white;
+
+        img {
+          width: 95px;
+        }
+
+        .heading-admit-one {
+          border-right: 1px dashed $white;
+          padding: 20px;
+
+          img {
+            margin: 0 35% 0 5%;
+          }
+
+          h6 {
+            padding: 0;
+            margin: 0;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            background-color: $white;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            top: -20px;
+            right: 0;
+            margin-right: -20px;
+            z-index: 2;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            background-color: $white;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border-top: 1px solid $gray-600;
+            bottom: -245px;
+            right: 0;
+            margin-right: -20px;
+            z-index: 2;
+
+            @include max-tablet() {
+              bottom: -540px;
+            }
+          }
+        }
+
+        .heading-barcode {
+          padding: 20px 10px;
+        }
+
+        @include phone() {
+          display: none;
+        }
+      }
+
+      .ticket-info {
+        border: 1px solid $gray-600;
+        border-radius: 0 0 8px 8px;
+
+        .ticket-info-text {
+          padding: 20px;
+          border-right: 1px solid $gray-600;
+
+          p {
+            margin-bottom: 2px;
+          }
+
+          .price {
+            h6 {
+              font-weight: 700;
+              font-size: 18px;
+            }
+            #total-tag {
+              display: none;
+            }
+          }
+        }
+        .ticket-info-barcode {
+          margin: auto;
+        }
+
+        @include phone() {
+          border: none;
+          border-radius: 10px;
+          background-color: $white;
+          padding: 10px;
+
+          .ticket-info-text {
+            border-right: none;
+            border-top: 1px dashed $gray-400;
+
+            .price {
+              margin-top: 15px;
+              padding: 15px;
+              border: 1px solid $gray-400;
+              border-radius: 10px;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+              #price-tag {
+                display: none;
+              }
+              #total-tag {
+                display: block;
+                margin-left: 20px;
+                margin-bottom: 0;
+                font-weight: 600;
+              }
+
+              h6 {
+                margin: 0;
+                margin-right: 20px;
+              }
+            }
+
+            &::after {
+              content: "";
+              position: absolute;
+              background-color: $gray-300;
+              width: 40px;
+              height: 40px;
+              border-radius: 100%;
+              z-index: 2;
+              top: -20px;
+              left: 0;
+              margin-left: -30px;
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              background-color: $gray-300;
+              width: 40px;
+              height: 40px;
+              border-radius: 100%;
+              z-index: 2;
+              top: -20px;
+              right: 0;
+              margin-right: -30px;
+            }
+          }
+        }
+      }
+    }
+
+    .btn-print-ticket {
+      @include phone() {
+        display: none;
+      }
+    }
+  }
+}

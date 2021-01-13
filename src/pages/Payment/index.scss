@@ -1,0 +1,188 @@
+@import "../../assets/scss/variable.scss";
+@import "../../assets/scss/mixin.scss";
+
+#payment {
+  background-color: $gray-300;
+  h5 {
+    font-weight: 600;
+    padding: 0;
+    font-size: 24px;
+    @include phone() {
+      font-size: 20px;
+    }
+  }
+  .total-mobile {
+    display: none;
+
+    @include phone() {
+      display: block;
+      background-color: $white;
+      padding: 20px;
+      h6 {
+        font-weight: 600;
+      }
+      p {
+        font-size: 17px;
+        font-weight: 700;
+      }
+    }
+  }
+  .order {
+    .order-info {
+      border-radius: 15px;
+      background-color: $white;
+      padding: 40px;
+
+      img {
+        height: 60px;
+        padding: 0;
+      }
+      p {
+        font-size: 16px;
+      }
+      h6 {
+        font-size: 16px;
+      }
+      hr {
+        margin-top: 0;
+      }
+
+      .total {
+        h6 {
+          font-weight: 600;
+        }
+        p {
+          font-size: 17px;
+          font-weight: 700;
+        }
+      }
+    }
+    @include phone() {
+      display: none;
+    }
+  }
+  .personal-info {
+    border-radius: 15px;
+    background-color: $white;
+    padding: 30px;
+
+    label {
+      color: $gray-600;
+      font-size: 14px;
+    }
+
+    .warning-form {
+      background-color: rgba(244, 183, 64, 0.3);
+      border-radius: 8px;
+      margin-top: 25px;
+      .warning-icon {
+        margin: 0 10px 10px 20px;
+        font-size: 25px;
+        color: $yellow;
+      }
+      .warning-text {
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .payment {
+    .payment-method {
+      border-radius: 15px;
+      background-color: $white;
+      padding: 30px;
+
+      a {
+        margin-right: 8px;
+        margin-bottom: 8px;
+        height: 40px;
+        width: 125px;
+        border-radius: 8px;
+        border: 1px solid $gray-400;
+        .payment-image {
+          width: 95px;
+          height: 25px;
+
+          img {
+            max-height: 100%;
+            width: auto;
+          }
+        }
+
+        &:hover {
+          background-color: $gray-300;
+        }
+
+        @include phone() {
+          height: 30px;
+          width: 93.75px;
+          border-radius: 5px;
+          padding: 20px;
+
+          .payment-image {
+            width: 71.25px;
+            height: 20px;
+
+            img {
+              max-height: 100%;
+              width: auto;
+            }
+          }
+        }
+      }
+      .view-more {
+        #view-more {
+          width: 60%;
+          margin: 0.7em auto;
+          overflow: hidden;
+          text-align: center;
+          font-weight: 300;
+          border: none;
+          &:hover {
+            background-color: $white;
+          }
+        }
+        #view-more::before,
+        #view-more::after {
+          content: "";
+          display: inline-block;
+          width: 90%;
+          margin: 0 0.5em 0 -55%;
+          vertical-align: middle;
+          border-bottom: 1px solid $gray-400;
+        }
+        #view-more:after {
+          margin: 0 -55% 0 0.5em;
+        }
+      }
+      .offline-payment {
+        a {
+          border: none;
+          &:hover {
+            background-color: $white;
+          }
+        }
+      }
+    }
+  }
+  .btn-pay {
+    button {
+      width: 30%;
+      margin: 10px;
+      font-size: 12px;
+      a {
+        color: $white;
+      }
+      @include phone() {
+        width: 100%;
+      }
+    }
+    .btn-previous-step {
+      @include phone() {
+        display: none;
+      }
+    }
+  }
+}

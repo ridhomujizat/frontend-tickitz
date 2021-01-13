@@ -1,0 +1,57 @@
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/variable.scss";
+
+/*====== Footer ======*/
+#footer {
+  margin-top: 100px;
+  .footer {
+    margin-top: 70px;
+    &-tickitz {
+      p {
+        color: $gray-400;
+      }
+    }
+
+    &-explore {
+      h5 {
+        padding-bottom: 10px;
+      }
+      a {
+        color: $gray-400;
+        margin-right: 15px;
+      }
+    }
+
+    &-sponsor {
+      img {
+        height: 45px;
+        width: auto;
+      }
+    }
+
+    &-social {
+      a {
+        font-size: 25px;
+        margin-right: 20px;
+        color: $gray-400;
+
+        @include min-tablet() {
+          font-size: 16px;
+          margin-right: 10px;
+        }
+
+        .social-name {
+          margin-left: 20px;
+          display: none;
+
+          @include min-desktop() {
+            display: inherit;
+          }
+        }
+      }
+    }
+  }
+  .licence {
+    color: $gray-400;
+  }
+}

@@ -1,0 +1,19 @@
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/variable.scss";
+
+.upcoming-movie {
+  width: 195px;
+  margin: 15px;
+  padding: 15px;
+  border: 1px solid $gray-300;
+  border-radius: 8px;
+
+  h3 {
+    @include text-medium;
+    color: $black;
+  }
+  p {
+    @include text-x-small;
+    color: $text-light;
+  }
+}

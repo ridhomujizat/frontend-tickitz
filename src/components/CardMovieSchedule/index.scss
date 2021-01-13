@@ -1,0 +1,42 @@
+@import "../../assets/scss/variable.scss";
+
+.movie-schedule-card {
+  border: 0.5px solid $gray-200;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  img {
+    padding: 0;
+    margin: 0;
+    border: none;
+    height: 35px;
+  }
+  h5,
+  h6 {
+    font-weight: 600;
+  }
+
+  .time-available {
+    .time {
+      padding: 7px;
+
+      .now-play {
+        color: $purple;
+      }
+
+      .disabled {
+        color: $gray-400;
+        cursor: not-allowed;
+        text-decoration: none;
+      }
+
+      .availble {
+        color: #14142b;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 8px 24px rgba(17, 17, 17, 0.08);
+  }
+}

@@ -1,0 +1,65 @@
+@import "../../assets/scss/mixin.scss";
+@import "../../assets/scss/variable.scss";
+
+.detail-movie {
+  img {
+    border-radius: 8px;
+    border: 1px solid $gray-300;
+    padding: 20px;
+  }
+
+  h1 {
+    font-weight: 700;
+  }
+
+  p {
+    color: $gray-500;
+  }
+}
+
+.showtimes {
+  h4 {
+    @include text-large;
+    font-weight: 700;
+  }
+
+  input,
+  select {
+    background-color: $gray-400;
+    @include min-tablet() {
+      width: 60%;
+    }
+  }
+
+  input {
+    &::-webkit-calendar-picker-indicator {
+      background: url("../../assets/images/logo/Forward.png") center no-repeat;
+    }
+  }
+
+  .input-group-text {
+    background-color: $gray-400;
+  }
+}
+
+.view-more {
+  a {
+    width: 60%;
+    margin: 0.7em auto;
+    overflow: hidden;
+    text-align: center;
+    font-weight: 300;
+  }
+  a::before,
+  a::after {
+    content: "";
+    display: inline-block;
+    width: 50%;
+    margin: 0 0.5em 0 -55%;
+    vertical-align: middle;
+    border-bottom: 1px solid $gray-300;
+  }
+  a:after {
+    margin: 0 -55% 0 0.5em;
+  }
+}

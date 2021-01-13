@@ -1,0 +1,248 @@
+@import "../../assets/scss/variable.scss";
+@import "../../assets/scss/mixin.scss";
+
+#order-page {
+  background-color: $gray-300;
+  h5 {
+    font-weight: 600;
+    padding: 0;
+    font-size: 24px;
+    @include phone() {
+      font-size: 20px;
+    }
+  }
+  .movie-title {
+    .title {
+      border-radius: 15px;
+      background-color: $white;
+      padding: 23px 30px 20px 30px;
+
+      .change-movie {
+        color: $purple;
+        background-color: $gray-300;
+
+        &:hover {
+          background-color: $gray-600;
+          color: $white;
+        }
+      }
+    }
+
+    @include phone() {
+      display: none;
+    }
+  }
+  .order-info {
+    border-radius: 15px;
+    background-color: $white;
+    padding: 20px 30px 20px 30px;
+
+    img {
+      height: 60px;
+      padding: 0;
+    }
+    p {
+      font-size: 12px;
+    }
+    h6 {
+      font-size: 12px;
+    }
+
+    .total {
+      h6 {
+        font-weight: 600;
+      }
+      p {
+        font-size: 17px;
+        color: $purple;
+        font-weight: 700;
+      }
+    }
+  }
+  .seat-cinemas {
+    .your-seat {
+      border-radius: 15px;
+      background-color: $white;
+      padding: 20px 30px 20px 30px;
+
+      .cinema-studio {
+        width: 390px;
+        margin: auto;
+
+        @include phone() {
+          width: 95%;
+        }
+        .screen {
+          margin: 25px;
+          @include phone() {
+            margin-bottom: 5px;
+            height: 2px;
+            background-color: $purple;
+            p {
+              display: none;
+            }
+          }
+        }
+        .row-seat {
+          margin-bottom: 5px;
+          height: 20px;
+
+          .col-seat {
+            .seat {
+              width: 20px;
+              height: 20px;
+              background-color: $gray-400;
+              margin-right: 5px;
+              border-radius: 2px;
+
+              &:hover {
+                background-color: $purple;
+              }
+            }
+            .space {
+              width: 30px;
+              background-color: $white;
+            }
+            .love-seat {
+              width: 46px;
+              height: 20px;
+              margin-right: 5px;
+              background-color: $pink;
+              border-radius: 2px;
+
+              &:hover {
+                background-color: $purple;
+              }
+            }
+            .sold {
+              background-color: $gray-600;
+            }
+            .selected {
+              background-color: $purple;
+            }
+
+            .seating-key-col {
+              p {
+                padding: 0;
+                margin: 0;
+              }
+              margin: 5px;
+              width: 20px;
+
+              @include phone() {
+                width: 3px;
+                background-color: $green;
+                p {
+                  display: none;
+                }
+              }
+            }
+
+            .seat-key-row {
+              width: 20px;
+              height: 20px;
+              margin-right: 5px;
+              border-radius: 2px;
+              @include phone() {
+                height: 2px;
+                background-color: $pink;
+                p {
+                  display: none;
+                }
+              }
+              @include min-tablet() {
+                margin-top: 17px;
+              }
+            }
+          }
+        }
+      }
+
+      .your-seat-info {
+        margin: auto;
+        h6 {
+          font-weight: 600;
+        }
+        .info {
+          margin: 5px 10px 5px 5px;
+          p {
+            margin: 0;
+            font-size: 12px;
+          }
+          .seat {
+            width: 20px;
+            height: 20px;
+            display: block;
+            border-radius: 5px;
+            margin-right: 5px;
+          }
+          .availble {
+            background-color: $gray-500;
+          }
+          .selected {
+            background-color: $purple;
+          }
+          .love-nest {
+            background-color: $pink;
+          }
+          .sold {
+            background-color: $gray-600;
+          }
+        }
+        .info-mobile {
+          display: none;
+          @include phone() {
+            display: block;
+          }
+          .p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  .seat-choose-mobile {
+    border-radius: 15px;
+    background-color: $white;
+    padding: 30px;
+
+    form {
+      select {
+        background-color: $gray-400;
+        padding: 5px;
+      }
+    }
+    a {
+      font-size: 12px;
+    }
+
+    @include min-tablet() {
+      display: none;
+    }
+  }
+  .btn-checkout {
+    a {
+      color: $white;
+    }
+    button {
+      width: 30%;
+      margin: 10px;
+      font-size: 12px;
+
+      @include phone() {
+        width: 100%;
+      }
+    }
+    .btn-change-movie {
+      @include phone() {
+        display: none;
+      }
+    }
+  }
+}
+
+.mobile-orderpage {
+  @include phone() {
+    display: none;
+  }
+}
