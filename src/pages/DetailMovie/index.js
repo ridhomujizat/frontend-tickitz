@@ -3,13 +3,30 @@ import "./index.scss";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
-import { InputDate } from "../../components/Form";
-import { ImLocation } from "react-icons/im";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import { InputDate, InputLocation } from "../../components/Form";
 import CardMovieSchedule from "../../components/CardMovieSchedule";
 
+import MovieList from "../../dummy/movieNowShow";
+import CinemasTimes from "../../dummy/cinamasTimes";
+
 class DetailMovie extends Component {
+  state = {
+    date: null,
+    cinemasTimes: CinemasTimes,
+    movieInfo: MovieList.filter(
+      (item) => Number(item.id) === Number(this.props.match.params.id)
+    ),
+  };
+
+  handleChange = (event) => {
+    const datePicked = String(event.target.value);
+    console.log(datePicked);
+    this.setState({ date: datePicked });
+  };
+
   render() {
+    const { movieInfo, cinemasTimes } = this.state;
     return (
       <>
         <Header />
@@ -18,7 +35,7 @@ class DetailMovie extends Component {
           <div className="detail-movie">
             <Row>
               <Col xs={12} md={4} lg={3} className="text-center">
-                <img src="/images/movie/spider-movie.png" alt={"movie"} />
+                <img src={movieInfo[0].images} alt={"movie"} />
               </Col>
               <Col xs={12} md={8} lg={9}>
                 <Row>
@@ -26,37 +43,28 @@ class DetailMovie extends Component {
                     xs={12}
                     className="text-center text-md-left my-4 mt-md-0"
                   >
-                    <h1>Spider-Man: HomeComing</h1>
-                    <p>Adventure, Action, Sci-Fi</p>
+                    <h1>{movieInfo[0].title}</h1>
+                    <p>{movieInfo[0].genre}</p>
                   </Col>
                   <Col xs={6}>
                     <p>Release Date</p>
-                    <h6>June 28, 2017</h6>
+                    <h6>{movieInfo[0].date}</h6>
                   </Col>
                   <Col xs={6}>
                     <p>Directed by</p>
-                    <h6>Jon Watss</h6>
+                    <h6>{movieInfo[0].directed}</h6>
                   </Col>
                   <Col xs={6} className="my-4">
                     <p>Duration</p>
-                    <h6>2 hours 13 minutes</h6>
+                    <h6>{movieInfo[0].duration}</h6>
                   </Col>
                   <Col xs={6} className="my-4">
                     <p>Casts</p>
-                    <h6>Tom Holland, Michael Keaton, Robert Downey Jr., ...</h6>
+                    <h6>{movieInfo[0].casts}</h6>
                   </Col>
                   <Col xs={12}>
                     <p>Synopsis</p>
-                    <h6>
-                      Thrilled by his experience with the Avengers, Peter
-                      returns home, where he lives with his Aunt May, under the
-                      watchful eye of his new mentor Tony Stark, Peter tries to
-                      fall back into his normal daily routine - distracted by
-                      thoughts of proving himself to be more than just your
-                      friendly neighborhood Spider-Man - but when the Vulture
-                      emerges as a new villain, everything that Peter holds most
-                      important will be threatened.
-                    </h6>
+                    <h6>{movieInfo[0].synopsis}</h6>
                   </Col>
                 </Row>
               </Col>
@@ -66,47 +74,39 @@ class DetailMovie extends Component {
                 <h4>Showtimes and Tickets</h4>
               </Col>
               <Col xs={12} md={6} className="text-md-right text-center mb-4">
-                <InputDate />
+                <Form>
+                  <InputDate
+                    name="date"
+                    onChange={(event) => this.handleChange(event)}
+                  />
+                </Form>
               </Col>
               <Col
                 xs={12}
                 md={6}
                 className="text-md-left text-center mb-4 m-auto"
               >
-                <Form.Group>
-                  <InputGroup>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>
-                        <ImLocation />
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control as="select">
-                      <option>Location</option>
-                    </Form.Control>
-                  </InputGroup>
-                </Form.Group>
+                <InputLocation />
               </Col>
             </Row>
 
             <Row className="my-5 movie-schedule">
-              <Col xs={12} md={6} lg={4}>
-                <CardMovieSchedule />
-              </Col>
-              <Col xs={12} md={6} lg={4}>
-                <CardMovieSchedule />
-              </Col>
-              <Col xs={12} md={6} lg={4}>
-                <CardMovieSchedule />
-              </Col>
-              <Col xs={12} md={6} lg={4}>
-                <CardMovieSchedule />
-              </Col>
-              <Col xs={12} md={6} lg={4}>
-                <CardMovieSchedule />
-              </Col>
-              <Col xs={12} md={6} lg={4}>
-                <CardMovieSchedule />
-              </Col>
+              {cinemasTimes.map((item) => {
+                return (
+                  <Col xs={12} md={6} lg={4} key={String(item.id)}>
+                    <CardMovieSchedule
+                      cinema={item.cinema}
+                      image={item.images}
+                      address={item.address}
+                      price={item.price}
+                      times={item.times}
+                      id={this.props.match.params.id}
+                      idTag={item.id}
+                      date={this.state.date}
+                    />
+                  </Col>
+                );
+              })}
             </Row>
 
             <Row className="justify-content-center">

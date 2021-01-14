@@ -12,6 +12,8 @@ class InputText extends Component {
           type={this.props.type}
           placeholder={this.props.placeholder}
           onChange={this.props.onChange}
+          as={this.props.as}
+          rows={this.props.rows}
           required
         />
       </Form.Group>

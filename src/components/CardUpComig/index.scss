@@ -16,4 +16,10 @@
     @include text-x-small;
     color: $text-light;
   }
+  img {
+    border-radius: 8px;
+    height: 240px;
+    width: 160px;
+    object-fit: cover;
+  }
 }

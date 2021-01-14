@@ -1,0 +1,9 @@
+@import "../../assets/scss/variable.scss";
+.details-information {
+  border-radius: 15px;
+  background-color: $white;
+  padding: 40px;
+  form {
+    width: 100%;
+  }
+}

@@ -6,9 +6,42 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
+import MovieList from "../../dummy/movieNowShow";
 
 export default class index extends Component {
+  state = {
+    selectedSeat: [],
+    ...this.props.history.location.state,
+    movieTicket: MovieList.filter(
+      (item) => Number(item.id) === Number(this.props.match.params.id)
+    ),
+  };
+
+  componentDidUpdate() {
+    console.log(this.state.selectedSeat);
+  }
+
+  chooseSeat = (event) => {
+    const seat = event.target.id;
+    const { selectedSeat } = this.state;
+    if (selectedSeat.indexOf(seat) === -1) {
+      selectedSeat.push(seat);
+      return console.log(this.state.selectedSeat);
+    }
+    this.setState({
+      selectedSeat: selectedSeat.filter((item) => item !== seat),
+    });
+  };
   render() {
+    const {
+      selectedSeat,
+      dateOrder,
+      timeOrder,
+      imageOrder,
+      movieTicket,
+      cinemaOrder,
+      priceOrder,
+    } = this.state;
     return (
       <>
         <Header />
@@ -19,7 +52,7 @@ export default class index extends Component {
                 <div className="movie-title mb-5">
                   <h5>Movie Selected</h5>
                   <div className="d-flex flex-row justify-content-between title my-4 align-items-center">
-                    <h5>Spider-Man: Homecoming</h5>
+                    <h5>{movieTicket[0].title}</h5>
                     <Button
                       type="button"
                       className="btn change-movie btn-secondary"
@@ -42,8 +75,20 @@ export default class index extends Component {
                             <div className="seating-key-col">
                               <p>A</p>
                             </div>
-                            <div className="seat"></div>
-                            <div className="seat"></div>
+                            <div
+                              className={`seat ${
+                                selectedSeat.indexOf("A1") === -1
+                                  ? "selected"
+                                  : "sold"
+                              }`}
+                              id="A1"
+                              onClick={this.chooseSeat}
+                            ></div>
+                            <div
+                              className="seat"
+                              id="A2"
+                              onClick={this.chooseSeat}
+                            ></div>
                             <div className="seat"></div>
                             <div className="seat"></div>
                             <div className="seat"></div>
@@ -333,20 +378,20 @@ export default class index extends Component {
                 <h5>Order Info</h5>
                 <div className="order-info">
                   <div className="text-center">
-                    <img src="./assets/img/CineOne21.png" alt="" />
-                    <h5>CineOne21 Cinema</h5>
+                    <img src={imageOrder} alt="" />
+                    <h5>{cinemaOrder}</h5>
                   </div>
                   <Row className="d-flex justify-content-between mt-4">
                     <p>Movie selected</p>
-                    <h6>Spider-Man: Homecoming</h6>
+                    <h6>{movieTicket[0].title}</h6>
                   </Row>
                   <Row className="d-flex justify-content-between">
                     <p>Tuesday, 07 July 2020</p>
-                    <h6>02:00pm</h6>
+                    <h6>{timeOrder}</h6>
                   </Row>
                   <Row className="d-flex justify-content-between">
                     <p>One ticket price</p>
-                    <h6>$10</h6>
+                    <h6>${priceOrder}.00</h6>
                   </Row>
                   <Row className="r-flex justify-content-between">
                     <p>Seat choosed</p>

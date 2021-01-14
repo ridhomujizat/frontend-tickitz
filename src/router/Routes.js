@@ -6,8 +6,22 @@ import DetailMovie from "../pages/DetailMovie";
 import Order from "../pages/Order";
 import Payment from "../pages/Payment";
 import Ticket from "../pages/Ticket";
+import Profile from "../pages/Profile";
+import AdminMovie from "../pages/AdminMovie";
 
 const routes = [
+  {
+    namePage: "Admin",
+    route: "/admin",
+    component: (res) => <AdminMovie {...res} />,
+    isExact: false,
+  },
+  {
+    namePage: "Profile",
+    route: "/profile",
+    component: (res) => <Profile {...res} />,
+    isExact: false,
+  },
   {
     namePage: "Ticket",
     route: "/result-ticket/:id",

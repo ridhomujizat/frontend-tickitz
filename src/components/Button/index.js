@@ -11,6 +11,7 @@ class Button extends Component {
         value={this.props.value}
         block={this.props.block}
         className={this.props.className}
+        onClick={this.props.onClick}
       >
         {this.props.children}
       </ButtonBootstrap>

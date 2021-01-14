@@ -1,0 +1,45 @@
+@import "../../assets/scss/variable.scss";
+@import "../../assets/scss/mixin.scss";
+
+#admin {
+  background-color: $gray-300;
+  h5 {
+    @include link-large;
+  }
+
+  .movie-descripton {
+    border-radius: 15px;
+    background-color: $white;
+    padding: 40px;
+
+    img {
+      border: 1px solid $gray-300;
+      padding: 5px;
+      border-radius: 8px;
+    }
+  }
+  .account-setting {
+    border-radius: 15px;
+    background-color: $white;
+    padding: 0 45px;
+    cursor: pointer;
+
+    .setting {
+      color: black;
+      text-decoration: none;
+      padding: 20px 15px;
+      color: $gray-600;
+    }
+
+    .active {
+      border-bottom: 2px solid $purple;
+      color: $black;
+    }
+
+    &:hover {
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}

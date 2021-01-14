@@ -1,0 +1,32 @@
+@import "../../assets/scss/variable.scss";
+@import "../../assets/scss/mixin.scss";
+
+.order-history-ticket {
+  border-radius: 15px;
+  background-color: $white;
+  padding: 40px;
+
+  p {
+    margin-bottom: 2px;
+  }
+
+  img {
+    height: 50px;
+  }
+
+  a {
+    color: $black;
+
+    @include phone() {
+      display: none;
+    }
+  }
+
+  .btn {
+    width: 35%;
+
+    @include phone() {
+      width: 100%;
+    }
+  }
+}

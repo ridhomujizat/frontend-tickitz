@@ -21,9 +21,9 @@ class CardNowShow extends Component {
           </Link>
           <Link
             className="btn btn-outline-primary btn-block"
-            to={`/cinema-order/${this.props.id}`}
+            to={`/movie-detail/${this.props.id}`}
           >
-            Detail
+            Book Now
           </Link>
         </div>
       </div>

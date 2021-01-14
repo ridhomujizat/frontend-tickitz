@@ -22,24 +22,6 @@
     @include text-large;
     font-weight: 700;
   }
-
-  input,
-  select {
-    background-color: $gray-400;
-    @include min-tablet() {
-      width: 60%;
-    }
-  }
-
-  input {
-    &::-webkit-calendar-picker-indicator {
-      background: url("../../assets/images/logo/Forward.png") center no-repeat;
-    }
-  }
-
-  .input-group-text {
-    background-color: $gray-400;
-  }
 }
 
 .view-more {

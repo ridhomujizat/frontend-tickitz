@@ -5,7 +5,7 @@ const month = [
   },
   {
     id: "2",
-    month: "Maret",
+    month: "Marth",
   },
   {
     id: "3",
@@ -13,19 +13,19 @@ const month = [
   },
   {
     id: "4",
-    month: "Mei",
+    month: "May",
   },
   {
     id: "5",
-    month: "Juni",
+    month: "June",
   },
   {
     id: "3",
-    month: "Juli",
+    month: "July",
   },
   {
     id: "3",
-    month: "Agustus",
+    month: "August",
   },
 ];
 

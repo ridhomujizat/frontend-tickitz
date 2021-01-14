@@ -4,8 +4,10 @@ import "./index.scss";
 import { LogoWhite } from "../../components/Logo";
 import barcode from "../../assets/images/barcode.png";
 import { Container, Row, Col } from "react-bootstrap";
+import { AiOutlinePrinter, AiOutlineDownload } from "react-icons/ai";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import Button from "../../components/Button";
 
 export default class index extends Component {
   render() {
@@ -22,7 +24,7 @@ export default class index extends Component {
                     <Row className="heading-ticket">
                       <Col
                         xs={7}
-                        className="col-7 heading-admit-one d-flex align-items-center justify-content-between"
+                        className="px-5 heading-admit-one d-flex align-items-center justify-content-between"
                       >
                         <LogoWhite size={"40px"} />
                         <h6>Admint One</h6>
@@ -32,73 +34,103 @@ export default class index extends Component {
                       </Col>
                     </Row>
                     <Row className="ticket-info">
-                      <div className="col-12 col-md-7 ticket-info-text order-1 order-md-0">
-                        <div className="row">
-                          <div className="col-6 col-md-12 mb-2 order-0 title">
+                      <Col
+                        xs={12}
+                        md={7}
+                        className="ticket-info-text order-1 order-md-0"
+                      >
+                        <Row>
+                          <Col
+                            xs={6}
+                            md={12}
+                            className="col-6 col-md-12 mb-2 order-0 title"
+                          >
                             <p>title</p>
                             <h6>Spider-Man: Homecoming</h6>
-                          </div>
-                          <div className="col-6 col-md-4 mb-2 order-2 order-md-1">
+                          </Col>
+                          <Col
+                            xs={6}
+                            md={4}
+                            className=" mb-2 order-2 order-md-1"
+                          >
                             <p>Date</p>
                             <h6>07 July</h6>
-                          </div>
-                          <div className="col-6 col-md-4 mb-2 order-3 order-md-2">
+                          </Col>
+                          <Col
+                            xs={6}
+                            md={4}
+                            className=" mb-2 order-3 order-md-2"
+                          >
                             <p>Time</p>
                             <h6>02:00pm</h6>
-                          </div>
-                          <div className="col-6 col-md-4 mb-2 order-1 order-md-3">
+                          </Col>
+                          <Col
+                            xs={6}
+                            md={4}
+                            className=" mb-2 order-1 order-md-3"
+                          >
                             <p>Category</p>
                             <h6>PG-13</h6>
-                          </div>
-                          <div className="col-6 col-md-4 mb-2 order-4 order-md-4">
+                          </Col>
+                          <Col
+                            xs={6}
+                            md={4}
+                            className=" mb-2 order-4 order-md-4"
+                          >
                             <p>Count</p>
                             <h6>3 pieces</h6>
-                          </div>
-                          <div className="col-6 col-md-4 mb-2 order-5 order-md-5">
+                          </Col>
+                          <Col
+                            xs={6}
+                            md={4}
+                            className="mb-2 order-5 order-md-5"
+                          >
                             <p>Seats</p>
                             <h6>C4, C5, C6</h6>
-                          </div>
-                          <div className="col-12 col-md-4 mb-2 order-6 order-md-6 price">
+                          </Col>
+                          <Col
+                            xs={12}
+                            md={4}
+                            className=" mb-2 order-6 order-md-6 price"
+                          >
                             <p id="price-tag">Price</p>
                             <p id="total-tag">Total</p>
                             <h6>$30.00</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-4 ticket-info-barcode order-0 order-md-1">
-                        <div className="row text-center">
-                          <div className="col my-4">
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col
+                        xs={12}
+                        md={4}
+                        className=" ticket-info-barcode order-0 order-md-1"
+                      >
+                        <Row className="text-center">
+                          <Col className="my-4">
                             <img src={barcode} alt="" className="img-fluid" />
-                          </div>
-                        </div>
-                      </div>
+                          </Col>
+                        </Row>
+                      </Col>
                     </Row>
                   </div>
                   <div className="btn-print-ticket m-4">
-                    <div className="row d-flex justify-content-center">
-                      <button
+                    <Row className="d-flex justify-content-center">
+                      <Button
                         type="button"
-                        className="btn btn-outline-secondary m-3"
+                        variant="outline-secondary"
+                        className="m-3 "
                       >
-                        <span
-                          className="iconify"
-                          data-icon="bx:bx-download"
-                          data-inline="false"
-                        ></span>
+                        <AiOutlineDownload className="mr-2" />
                         Download
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         type="button"
-                        className="btn btn-outline-secondary m-3 px-4"
+                        variant="outline-secondary"
+                        className="px-4 m-3"
                       >
-                        <span
-                          className="iconify"
-                          data-icon="teenyicons:print-outline"
-                          data-inline="false"
-                        ></span>
+                        <AiOutlinePrinter className="mr-2" />
                         Print
-                      </button>
-                    </div>
+                      </Button>
+                    </Row>
                   </div>
                 </div>
               </Col>

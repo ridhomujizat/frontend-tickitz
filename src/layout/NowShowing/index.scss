@@ -4,6 +4,9 @@
 #now-showing {
   background-color: $bg-gray;
   transition: 0.2s ease 0s;
+  height: 500px;
+  display: block;
+  position: relative;
 
   .now-showing-text {
     h4 {
@@ -28,5 +31,7 @@
       @include link-small;
       font-weight: 700;
     }
+  }
+  .slider {
   }
 }

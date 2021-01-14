@@ -93,7 +93,9 @@
           border-right: 1px solid $gray-600;
 
           p {
+            @include text-small;
             margin-bottom: 2px;
+            color: $gray-400;
           }
 
           .price {
@@ -177,6 +179,11 @@
     .btn-print-ticket {
       @include phone() {
         display: none;
+      }
+
+      .btn {
+        color: $gray-500;
+        border-color: $gray-500;
       }
     }
   }

@@ -1,7 +1,7 @@
 @import "../../../assets/scss/mixin.scss";
 @import "../../../assets/scss/variable.scss";
 
-.input-date {
+.input-location {
   label {
     @include text-small;
   }
@@ -11,12 +11,11 @@
     border: none;
   }
 
-  input {
+  select {
     background-color: $gray-300;
     border: none;
-    &::-webkit-calendar-picker-indicator {
-      background: url("../../../assets/images/logo/Forward.png") center
-        no-repeat;
-    }
+    -webkit-appearance: none;
+    background: url("../../../assets/images/logo/Forward.png") no-repeat right
+      $gray-300;
   }
 }
