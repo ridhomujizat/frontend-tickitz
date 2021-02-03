@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import logoWhite from "../../assets/images/logo/tickitz-white.png";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react'
+import logoWhite from '../../assets/images/logo/tickitz-white.png'
+import { Link } from 'react-router-dom'
 
 export default class LogoWhite extends Component {
-  render() {
+  render () {
     return (
-      <Link to="/">
+      <Link to='/'>
         <img
           src={logoWhite}
-          style={{ height: this.props.size, width: "auto" }}
-          alt="Tickitz"
+          style={{ height: this.props.size, width: 'auto' }}
+          alt='Tickitz'
         />
       </Link>
-    );
+    )
   }
 }

@@ -1,75 +1,73 @@
-import Home from "../pages/Home";
-import SignUp from "../pages/SignUp";
-import Login from "../pages/Login";
-import ForgetPassword from "../pages/ForgetPassword";
-import DetailMovie from "../pages/DetailMovie";
-import Order from "../pages/Order";
-import Payment from "../pages/Payment";
-import Ticket from "../pages/Ticket";
-import Profile from "../pages/Profile";
-import AdminMovie from "../pages/AdminMovie";
+import Home from '../pages/Home'
+import Login from '../pages/Login'
+import ForgetPassword from '../pages/ForgetPassword'
+import DetailMovie from '../pages/DetailMovie'
+import Order from '../pages/Order'
+import Payment from '../pages/Payment'
+import Ticket from '../pages/Ticket'
+import AdminMovie from '../pages/AdminMovie'
 
 const routes = [
   {
-    namePage: "Admin",
-    route: "/admin",
+    namePage: 'Admin',
+    route: '/admin/1',
     component: (res) => <AdminMovie {...res} />,
-    isExact: false,
+    isExact: false
   },
+  // {
+  //   namePage: "Profile",
+  //   route: "/profile",
+  //   component: (res) => <Profile {...res} />,
+  //   isExact: false,
+  // },
   {
-    namePage: "Profile",
-    route: "/profile",
-    component: (res) => <Profile {...res} />,
-    isExact: false,
-  },
-  {
-    namePage: "Ticket",
-    route: "/result-ticket/:id",
+    namePage: 'Ticket',
+    route: '/result-ticket/:id',
     component: (res) => <Ticket {...res} />,
-    isExact: false,
+    isExact: false
   },
   {
-    namePage: "Payment",
-    route: "/payment/:id",
+    namePage: 'Payment',
+    route: '/payment/:id',
     component: (res) => <Payment {...res} />,
-    isExact: false,
+    isExact: false
   },
   {
-    namePage: "Order Movie",
-    route: "/cinema-order/:id",
+    namePage: 'Order Movie',
+    route: '/cinema-order/:id',
     component: (res) => <Order {...res} />,
-    isExact: false,
+    isExact: false
   },
   {
-    namePage: "Detail Movie",
-    route: "/movie-detail/:id",
+    namePage: 'Detail Movie',
+    route: '/movie-detail/:slug',
     component: (res) => <DetailMovie {...res} />,
-    isExact: false,
+    isExact: false
   },
   {
-    namePage: "Forget Password",
-    route: "/forget-password",
+    namePage: 'Forget Password',
+    route: '/forget-password',
     component: (res) => <ForgetPassword {...res} />,
-    isExact: false,
+    isExact: false
   },
+  // {
+  //   namePage: "Sign Up",
+  //   route: "/sign-up",
+  //   component: (res) => <SignUp {...res} />,
+  //   isExact: false,
+  // },
   {
-    namePage: "Sign Up",
-    route: "/sign-up",
-    component: (res) => <SignUp {...res} />,
-    isExact: false,
-  },
-  {
-    namePage: "login",
-    route: "/login",
+    namePage: 'login',
+    route: '/login',
     component: (res) => <Login {...res} />,
-    isExact: false,
+    isExact: false
   },
   {
-    namePage: "Home",
-    route: "/",
+    namePage: 'Home',
+    route: '/',
     component: (res) => <Home {...res} />,
-    isExact: true,
-  },
-];
+    isExact: true
+  }
+]
 
-export default routes;
+export default routes

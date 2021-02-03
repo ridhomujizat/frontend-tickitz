@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./index.scss";
-import { Button as ButtonBootstrap } from "react-bootstrap";
+import React, { Component } from 'react'
+import './index.scss'
+import { Button as ButtonBootstrap } from 'react-bootstrap'
 
 class Button extends Component {
-  render() {
+  render () {
     return (
       <ButtonBootstrap
         variant={this.props.variant}
@@ -15,8 +15,8 @@ class Button extends Component {
       >
         {this.props.children}
       </ButtonBootstrap>
-    );
+    )
   }
 }
 
-export default Button;
+export default Button

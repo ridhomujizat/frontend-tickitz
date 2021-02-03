@@ -1,89 +1,105 @@
-import React, { Component } from "react";
-import "./index.scss";
-import { Col } from "react-bootstrap";
-import { Link, withRouter } from "react-router-dom";
-import Button from "../../components/Button";
+import React, { Component } from 'react'
+import './index.scss'
+import { Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import Button from '../../components/Button'
+
+import { connect } from 'react-redux'
+import { selectTime } from '../../redux/actions/order'
 
 class Index extends Component {
   state = {
-    time: null,
-    slectedID: null,
-    ...this.props,
-  };
+    ...this.props
+  }
 
   selectedTime = (event) => {
-    const timeSelected = event.target.id.slice(2);
-    if (event.target.className == "disabled") {
-      return this.setState({ time: null });
-    }
-
-    return this.setState({
-      time: timeSelected,
-      slectedID: event.target.id,
-    });
-  };
+    // if (event.target.className === 'disabled') {
+    //   return this.setState({ time: null })
+    // }
+    const value = event.target.id.split(',')
+    return this.props.selectTime({
+      idSchdule: value[0],
+      time: value[1],
+      seta: value[2]
+    })
+  }
 
   bookNow = (id) => {
-    const { history } = this.props;
-    const { time, date, image, price, cinema } = this.state;
-    history.push(`/cinema-order/${id}`, {
-      timeOrder: time,
-      dateOrder: date,
-      imageOrder: image,
-      priceOrder: price,
-      cinemaOrder: cinema,
-    });
-  };
+    const { idMovie, date, image, price, title, name } = this.state
 
-  render() {
-    const { slectedID } = this.state;
-    const idTag = this.props.idTag;
+    return this.props.selectTime({
+      title: title,
+      idMovie: idMovie,
+      date: date,
+      imageCinema: image,
+      price: price,
+      cinemaName: name
+    })
+  }
+
+  goBack = () => {
+    history.goBack()
+  }
+  render () {
+    const { idSchdule } = this.props.order
     return (
-      <div className="movie-schedule-card">
-        <div className="d-flex flex-row justify-content-start align-items-center">
+      <div className='movie-schedule-card'>
+        <div className='d-flex flex-row justify-content-start align-items-center'>
           <img src={this.props.image} alt={this.props.cinema} />
           <div>
-            <h5>{this.props.cinema}</h5>
-            <p>{this.props.address}</p>
+            <h5>{this.props.name}</h5>
+            <p id="address">{this.props.address}</p>
           </div>
         </div>
-        <Col xs={12} className=" d-flex flex-row flex-wrap time-available">
+        <Col xs={12} className=' d-flex flex-row flex-wrap time-available'>
           {this.props.times.map((item, index) => {
+            const value = []
+            value.push(item.id)
+            value.push(item.time)
+            value.push(item.seat)
             return (
-              <div className="time">
+              <div className='time' key={String(index)}>
                 <div
-                  id={`${idTag}${index}${item.time}`}
+                  // id={item.id}
+                  id={value}
                   className={
-                    slectedID == `${idTag}${index}${item.time}`
-                      ? "selected"
+                    idSchdule === `${item.id}`
+                      ? 'selected'
                       : item.status
                   }
                   onClick={this.selectedTime}
                   key={String(index)}
-                  time={item.time}
+                  time={item.time.slice(0, 5)}
+
                 >
-                  {item.time}
+                  {item.time.slice(0, 5)}
                 </div>
               </div>
-            );
+            )
           })}
         </Col>
-        <Col xs={12} className=" d-flex justify-content-between my-3">
+        <Col xs={12} className=' d-flex justify-content-between my-3'>
           <p>Price</p>
-          <h6>${this.props.price}.00/seat</h6>
+          <h6>Rp. {this.props.price}/seat</h6>
         </Col>
-        <Col xs={12} className="col-12 d-flex justify-content-between my-3">
-          <Button onClick={() => this.bookNow(this.props.id)}>Book Now</Button>
+        <Col xs={12} className='col-12 d-flex justify-content-between my-3'>
+          <Button onClick={this.goBack}>Book Now</Button>
           <Link
-            className="btn btn-outline-primary"
+            className='btn btn-outline-primary'
             to={`/cinema-order/${this.props.id}`}
-            role="button"
+            role='button'
+            onClick={() => this.bookNow(this.props.id)}
           >
             Add to cart
           </Link>
         </Col>
-      </div>
-    );
+      </div >
+    )
   }
 }
-export default withRouter(Index);
+
+const mapStateToProps = state => ({
+  order: state.order
+})
+const mapDispatchToProps = { selectTime }
+export default connect(mapStateToProps, mapDispatchToProps)(Index)

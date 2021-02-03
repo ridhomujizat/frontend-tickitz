@@ -6,6 +6,9 @@
     border-radius: 8px;
     border: 1px solid $gray-300;
     padding: 20px;
+    height: 300px;
+    width: 210px;
+    object-fit: cover;
   }
 
   h1 {
@@ -15,6 +18,10 @@
   p {
     color: $gray-500;
   }
+}
+
+p#error {
+  margin: auto,
 }
 
 .showtimes {
@@ -32,6 +39,7 @@
     text-align: center;
     font-weight: 300;
   }
+
   a::before,
   a::after {
     content: "";
@@ -41,6 +49,7 @@
     vertical-align: middle;
     border-bottom: 1px solid $gray-300;
   }
+
   a:after {
     margin: 0 -55% 0 0.5em;
   }

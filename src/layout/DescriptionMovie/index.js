@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import "./index.scss";
-import { Container, Col, Row } from "react-bootstrap";
+import React, { Component } from 'react'
+import './index.scss'
+import { Container, Col, Row } from 'react-bootstrap'
 
 class DecriptionMovie extends Component {
-  render() {
+  render () {
     return (
-      <div id="Description-movie">
-        <Container className="mt-5">
+      <div id='Description-movie'>
+        <Container className='mt-5'>
           <Row>
-            <Col xs={12} md={4} lg={3} className="text-center">
-              <img src="/images/movie/spider-movie.png" alt={"movie"} />
+            <Col xs={12} md={4} lg={3} className='text-center'>
+              <img src='/images/movie/spider-movie.png' alt={'movie'} />
             </Col>
             <Col xs={12} md={8} lg={9}>
               <Row>
-                <Col xs={12} className="text-center text-md-left my-4 mt-md-0">
+                <Col xs={12} className='text-center text-md-left my-4 mt-md-0'>
                   <h1>Spider-Man: HomeComing</h1>
                   <p>Adventure, Action, Sci-Fi</p>
                 </Col>
@@ -25,11 +25,11 @@ class DecriptionMovie extends Component {
                   <p>Directed by</p>
                   <h6>Jon Watss</h6>
                 </Col>
-                <Col xs={6} className="my-4">
+                <Col xs={6} className='my-4'>
                   <p>Duration</p>
                   <h6>2 hours 13 minutes</h6>
                 </Col>
-                <Col xs={6} className="my-4">
+                <Col xs={6} className='my-4'>
                   <p>Casts</p>
                   <h6>Tom Holland, Michael Keaton, Robert Downey Jr., ...</h6>
                 </Col>
@@ -51,8 +51,8 @@ class DecriptionMovie extends Component {
           </Row>
         </Container>
       </div>
-    );
+    )
   }
 }
 
-export default DecriptionMovie;
+export default DecriptionMovie

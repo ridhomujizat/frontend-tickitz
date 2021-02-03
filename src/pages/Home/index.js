@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
-import Header from "../../components/Header";
-import Hero from "../../layout/Hero";
-import NowShowing from "../../layout/NowShowing";
-import UpComing from "../../layout/UpComing";
-import JoinSubcribe from "../../layout/JoinSubcribe";
-import Footer from "../../components/Footer";
+import Header from '../../components/Header'
+import Hero from '../../layout/Hero'
+import NowShowing from '../../layout/NowShowing'
+import UpComing from '../../layout/UpComing'
+import JoinSubcribe from '../../layout/JoinSubcribe'
+import Footer from '../../components/Footer'
 
 class Home extends Component {
-  render() {
+  render () {
     return (
       <>
         <Header />
@@ -18,8 +18,8 @@ class Home extends Component {
         <JoinSubcribe />
         <Footer />
       </>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home

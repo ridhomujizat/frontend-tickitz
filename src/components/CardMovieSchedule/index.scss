@@ -6,12 +6,22 @@
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 15px;
+
   img {
     padding: 0;
     margin: 0;
     border: none;
-    height: 35px;
+    height: auto;
+    width: 150px;
+    object-fit: cover;
   }
+
+  p#address {
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   h5,
   h6 {
     font-weight: 600;
@@ -35,6 +45,7 @@
       .availble {
         color: #14142b;
       }
+
       .selected {
         color: $white;
         background-color: $gray-400;
@@ -43,6 +54,5 @@
     }
   }
 
-  &:hover {
-  }
+  &:hover {}
 }

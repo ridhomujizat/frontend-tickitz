@@ -1,2 +1,2 @@
-export { default as LogoPurple } from "./LogoPurple";
-export { default as LogoWhite } from "./LogoWhite";
+export { default as LogoPurple } from './LogoPurple'
+export { default as LogoWhite } from './LogoWhite'
