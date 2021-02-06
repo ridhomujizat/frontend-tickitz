@@ -1,5 +1,6 @@
 const initialState = {
   token: null,
+  message: '',
   errorMsg: ''
 }
 
@@ -15,6 +16,12 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         errorMsg: action.payload
+      }
+    }
+    case 'SUCCESS_MESSAGE': {
+      return {
+        ...state,
+        message: action.payload
       }
     }
     default: {

@@ -20,6 +20,7 @@ export default class index extends Component {
             type='date'
             placeholder={this.props.placeholder}
             onChange={this.props.onChange}
+            defaultValue={this.props.defaultValue}
           />
         </InputGroup>
       </Form.Group>

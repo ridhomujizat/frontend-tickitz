@@ -17,8 +17,40 @@ import ovo from '../../assets/images/peyment-method/ovo.png'
 import visa from '../../assets/images/peyment-method/visa.png'
 import paypal from '../../assets/images/peyment-method/paypal.png'
 
-export default class index extends Component {
+import http from '../../helper/http'
+import { connect } from 'react-redux'
+import Moment from 'react-moment'
+// import { decodeToken } from 'react-jwt'
+
+class Index extends Component {
+  state = {
+    name: '',
+    phone: '',
+    email: ''
+  }
+  async componentDidMount () {
+    const token = this.props.auth.token
+    const { id } = this.props.match.params
+
+    const responsTransaction = await http(token).get(`transaction/${id}`)
+    this.setState({
+      ...responsTransaction.data.results
+    })
+    const response = await http(token).get('profile')
+    this.setState({
+      name: `${response.data.results[0].firstName} ${response.data.results[0].lastName}`,
+      email: response.data.results[0].email,
+      phone: response.data.results[0].phone
+    })
+  }
+
+  resultsTicket = async () => {
+    const { id } = this.props.match.params
+    this.props.history.push(`/result-ticket/${id}?statusPayment=pending`)
+  }
+
   render () {
+    const { name, phone, email, title, total, date, time, price, seatSelected } = this.state
     return (
       <>
         <Header />
@@ -29,7 +61,7 @@ export default class index extends Component {
                 <Col xs={12}>
                   <Row className='d-flex justify-content-between total align-items-center'>
                     <h6>Total Payment</h6>
-                    <p>$30.00</p>
+                    <p>Rp {total}</p>
                   </Row>
                 </Col>
               </Row>
@@ -42,28 +74,28 @@ export default class index extends Component {
                   <h5>Payment Info</h5>
                   <div className='order-info'>
                     <Row className='d-flex justify-content-between'>
-                      <p>Tuesday, 07 July 2020</p>
-                      <h6>02:00pm</h6>
+                      <p><Moment format="LL">{date}</Moment></p>
+                      <h6>{time}</h6>
                     </Row>
                     <hr />
                     <Row className='d-flex justify-content-between mt-4'>
                       <p>Movie selected</p>
-                      <h6>Spider-Man: Homecoming</h6>
+                      <h6>{title}</h6>
                     </Row>
                     <hr />
                     <Row className='d-flex justify-content-between'>
                       <p>One ticket price</p>
-                      <h6>$10</h6>
+                      <h6>Rp. {price},-</h6>
                     </Row>
                     <hr />
                     <Row className='d-flex justify-content-between'>
                       <p>Seat choosed</p>
-                      <h6>$C4, C5, C6</h6>
+                      <h6>{seatSelected}</h6>
                     </Row>
                     <hr />
                     <Row className='d-flex justify-content-between total align-items-center'>
                       <h6>Total Payment</h6>
-                      <p>$30.00</p>
+                      <p>Rp. {total},-</p>
                     </Row>
                   </div>
                 </div>
@@ -162,17 +194,22 @@ export default class index extends Component {
                       name='name'
                       placeholder={'Your Name'}
                       type={'text'}
+                      defaultValue={name}
+
                     />
                     <InputText
                       label={'Email'}
                       name='email'
                       placeholder={'Your Email'}
                       type={'email'}
+                      defaultValue={email}
+
                     />
                     <InputNumber
                       label={'Phone Number'}
                       name='phone'
                       placeholder='Your Number'
+                      defaultValue={phone}
                     />
                     <div className='warning-form d-flex flex-row align-items-center'>
                       <div className='warning-icon'>
@@ -195,10 +232,11 @@ export default class index extends Component {
                   >
                     Previous Step
                   </Button>
-                  <Button variant='primary'>
-                    <Link to={`/result-ticket/${this.props.id}`}>
-                      Pay your order
-                    </Link>
+                  <Button
+                    variant='primary'
+                    onClick={this.resultsTicket}
+                  >
+                    Pay your order
                   </Button>
                 </div>
               </Col>
@@ -211,3 +249,8 @@ export default class index extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+export default connect(mapStateToProps)(Index)

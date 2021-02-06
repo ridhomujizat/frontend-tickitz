@@ -16,6 +16,7 @@ class InputNumber extends Component {
             type={this.props.type}
             placeholder={this.props.placeholder}
             onChange={this.props.onChange}
+            defaultValue={this.props.defaultValue}
             required
           />
         </InputGroup>

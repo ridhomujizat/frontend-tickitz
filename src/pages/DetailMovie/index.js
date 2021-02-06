@@ -19,12 +19,16 @@ class DetailMovie extends Component {
     cinemas: [],
     date: [],
     idLocation: null,
-    errorMessage: null
+    errorMessage: null,
+    slug: ''
   }
 
   async componentDidMount () {
+    window.scrollTo(0, 0)
     const { slug } = this.props.match.params
-
+    this.setState({
+      slug: slug
+    })
     try {
       const resultMovie = await http().get(`/movies/${slug}`)
       this.setState({
@@ -81,11 +85,10 @@ class DetailMovie extends Component {
   }
 
   render () {
-    const { movie, cinemas, errorMessage } = this.state
+    const { movie, cinemas, errorMessage, slug } = this.state
     return (
       <>
         <Header />
-
         <Container className='mt-5'>
           <div className='detail-movie'>
             <Row>
@@ -154,6 +157,7 @@ class DetailMovie extends Component {
                 return (
                   <Col xs={12} md={6} lg={4} key={String(item.idCinema)}>
                     <CardMovieSchedule
+                      slug={slug}
                       title={movie.title}
                       idMovie={movie.id}
                       name={item.name}

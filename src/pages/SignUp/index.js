@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './sign.scss'
-import { Row, Col, Form } from 'react-bootstrap'
+import { Row, Col, Form, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import InfoSign from '../../layout/InfoSign/InfoSign'
@@ -10,24 +10,30 @@ import Button from '../../components/Button'
 import Fb from '../../assets/images/logo/Facebook.jpg'
 import google from '../../assets/images/logo/google.png'
 
-export default class index extends Component {
+import { connect } from 'react-redux'
+import { register } from '../../redux/actions/auth'
+
+class index extends Component {
   state = {
     email: '',
     password: ''
   }
 
-  submitData = (event) => {
-    event.preventDefault()
-    if (this.state.email && this.state.password) {
-      this.props.history.push('/login?success=true', { data: this.state })
-    } else {
-      this.props.history.push('/sign-up?success=false')
-    }
-    console.log(this.state)
+  submitData = (e) => {
+    e.preventDefault()
+    const { email, password } = this.state
+    this.props.register(email, password)
+    return this.redirectLogin()
   }
 
   changeText = (event) => {
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  redirectLogin = () => {
+    if (this.props.auth.message) {
+      this.props.history.push('/login?success=true')
+    }
   }
 
   render () {
@@ -87,6 +93,8 @@ export default class index extends Component {
                           I agree to terms & conditions
                         </label>
                       </div>
+                      {this.props.auth.message !== '' && <Alert variant="success">{this.props.auth.message}</Alert>}
+                      {this.props.auth.errorMsg !== '' && <Alert variant="danger">{this.props.auth.errorMsg}</Alert>}
                       <Button
                         className='btn-primary w-100 py-3 mb-4'
                         type='submit'
@@ -124,3 +132,9 @@ export default class index extends Component {
     )
   }
 }
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+const mapDispatchToProps = { register }
+
+export default connect(mapStateToProps, mapDispatchToProps)(index)

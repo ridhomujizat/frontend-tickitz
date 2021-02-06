@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 
 const PublicRoute = ({ component: Component, restricted, auth, ...rest }) => {
   return (
-    // restricted = false meaning public route
-    // restricted = true meaning restricted route
     <Route {...rest} render={props => (
       auth.token && restricted
         ? <Redirect to='/' />

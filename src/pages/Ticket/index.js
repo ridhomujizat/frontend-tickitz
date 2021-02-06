@@ -2,15 +2,34 @@ import React, { Component } from 'react'
 import './index.scss'
 
 import { LogoWhite } from '../../components/Logo'
-import barcode from '../../assets/images/barcode.png'
 import { Container, Row, Col } from 'react-bootstrap'
 import { AiOutlinePrinter, AiOutlineDownload } from 'react-icons/ai'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Button from '../../components/Button'
 
-export default class index extends Component {
+import http from '../../helper/http'
+import { connect } from 'react-redux'
+import Moment from 'react-moment'
+
+import QRCode from 'react-qr-code'
+
+class Index extends Component {
+  state = {}
+
+  async componentDidMount () {
+    const token = this.props.auth.token
+    const { id } = this.props.match.params
+    console.log(this.props.match)
+
+    const responsTransaction = await http(token).get(`transaction/${id}`)
+    this.setState({
+      ...responsTransaction.data.results
+    })
+  }
+
   render () {
+    const { title, total, date, time, seatSelected } = this.state
     return (
       <>
         <Header />
@@ -46,7 +65,7 @@ export default class index extends Component {
                             className='col-6 col-md-12 mb-2 order-0 title'
                           >
                             <p>title</p>
-                            <h6>Spider-Man: Homecoming</h6>
+                            <h6>{title}</h6>
                           </Col>
                           <Col
                             xs={6}
@@ -54,7 +73,7 @@ export default class index extends Component {
                             className=' mb-2 order-2 order-md-1'
                           >
                             <p>Date</p>
-                            <h6>07 July</h6>
+                            <h6><Moment format="ll">{date}</Moment></h6>
                           </Col>
                           <Col
                             xs={6}
@@ -62,7 +81,7 @@ export default class index extends Component {
                             className=' mb-2 order-3 order-md-2'
                           >
                             <p>Time</p>
-                            <h6>02:00pm</h6>
+                            <h6>{time}</h6>
                           </Col>
                           <Col
                             xs={6}
@@ -78,7 +97,7 @@ export default class index extends Component {
                             className=' mb-2 order-4 order-md-4'
                           >
                             <p>Count</p>
-                            <h6>3 pieces</h6>
+                            <h6>{seatSelected} pieces</h6>
                           </Col>
                           <Col
                             xs={6}
@@ -86,7 +105,7 @@ export default class index extends Component {
                             className='mb-2 order-5 order-md-5'
                           >
                             <p>Seats</p>
-                            <h6>C4, C5, C6</h6>
+                            <h6>{seatSelected}</h6>
                           </Col>
                           <Col
                             xs={12}
@@ -95,7 +114,7 @@ export default class index extends Component {
                           >
                             <p id='price-tag'>Price</p>
                             <p id='total-tag'>Total</p>
-                            <h6>$30.00</h6>
+                            <h6>{total}</h6>
                           </Col>
                         </Row>
                       </Col>
@@ -106,7 +125,7 @@ export default class index extends Component {
                       >
                         <Row className='text-center'>
                           <Col className='my-4'>
-                            <img src={barcode} alt='' className='img-fluid' />
+                            <QRCode className="ticket-info-barcode" size="110" value={`http://localhost:3000${this.props.match.url}`} />
                           </Col>
                         </Row>
                       </Col>
@@ -142,3 +161,8 @@ export default class index extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+export default connect(mapStateToProps)(Index)

@@ -181,4 +181,8 @@ class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(Header)

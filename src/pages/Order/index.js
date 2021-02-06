@@ -2,45 +2,62 @@ import React, { Component } from 'react'
 import './index.scss'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Button from '../../components/Button'
-import MovieList from '../../dummy/movieNowShow'
+import Moment from 'react-moment'
+import seat from '../../helper/seatType'
 
-export default class index extends Component {
+import { connect } from 'react-redux'
+import { selectSeat, removeSeat, createTransaction } from '../../redux/actions/order'
+import http from '../../helper/http'
+// import { Link } from 'react-router-dom'
+
+class Index extends Component {
   state = {
-    selectedSeat: [],
-    ...this.props.history.location.state,
-    movieTicket: MovieList.filter(
-      (item) => Number(item.id) === Number(this.props.match.params.id)
-    )
+    sold: []
   }
-
-  componentDidUpdate () {
-    console.log(this.state.selectedSeat)
-  }
-
-  chooseSeat = (event) => {
-    const seat = event.target.id
-    const { selectedSeat } = this.state
-    if (selectedSeat.indexOf(seat) === -1) {
-      selectedSeat.push(seat)
-      return console.log(this.state.selectedSeat)
-    }
+  async componentDidMount () {
+    const response = await http().get(`/transaction/seat/${this.props.order.idSchedule}`)
     this.setState({
-      selectedSeat: selectedSeat.filter((item) => item !== seat)
+      sold: response.data.result.map(item => item.seatSelected)
     })
   }
+  chooseSeat = (event) => {
+    const seat = event.target.id
+    const { seatSelected } = this.props.order
+    if (this.state.sold.indexOf(seat) === -1) {
+      if (seatSelected.indexOf(seat) === -1) {
+        return this.props.selectSeat({ seat })
+      }
+      return this.props.removeSeat({ seat })
+    }
+  }
+  orderResult = async () => {
+    const data = this.props.order
+    const token = this.props.auth.token
+    this.props.createTransaction(token, data)
+  }
+
+  createTransaction = () => {
+    this.orderResult()
+    setTimeout(() => {
+      const { idTransaction } = this.props.order
+      this.props.history.push(`/payment/${idTransaction}?statusPayment=pending`)
+    }, 200)
+  }
+
   render () {
     const {
-      selectedSeat,
-      timeOrder,
-      imageOrder,
-      movieTicket,
-      cinemaOrder,
-      priceOrder
-    } = this.state
+      title,
+      cinemaName,
+      imageCinema,
+      price,
+      date,
+      seatSelected,
+      time,
+      total
+    } = this.props.order
     return (
       <>
         <Header />
@@ -51,7 +68,7 @@ export default class index extends Component {
                 <div className='movie-title mb-5'>
                   <h5>Movie Selected</h5>
                   <div className='d-flex flex-row justify-content-between title my-4 align-items-center'>
-                    <h5>{movieTicket[0].title}</h5>
+                    <h5>{title}</h5>
                     <Button
                       type='button'
                       className='btn change-movie btn-secondary'
@@ -69,216 +86,55 @@ export default class index extends Component {
                         <Row className='justify-content-center screen'>
                           <p>Screen</p>
                         </Row>
-                        <div className='row-seat'>
-                          <div className='col-seat d-flex flex-row'>
-                            <div className='seating-key-col'>
-                              <p>A</p>
+                        {seat.map((item, index) => {
+                          return (
+                            <div className='row-seat' key={String(index)}>
+                              <div className='col-seat d-flex flex-row' >
+                                <div className='seating-key-col'>
+                                  <p>{item[0].id.slice(0, 1)}</p>
+                                </div>
+                                {item.map(item => {
+                                  const className = []
+                                  className.push(item.class)
+                                  if (seatSelected.indexOf(item.id) > -1) {
+                                    className.push('selected')
+                                  } else if (seatSelected.indexOf(item.id) === -1) {
+                                    const index = className.indexOf('selected')
+                                    if (index > -1) {
+                                      className.splice(index, 1)
+                                    }
+                                  }
+                                  if (this.state.sold.indexOf(item.id) > -1) {
+                                    className.push('sold')
+                                  }
+                                  return (
+                                    <div
+                                      key={String(item.id)}
+                                      id={item.id}
+                                      className={className.join(' ')}
+                                      onClick={this.chooseSeat}
+                                    ></div>
+                                  )
+                                })}
+                              </div>
                             </div>
-                            <div
-                              className={`seat ${selectedSeat.indexOf('A1') === -1
-                                ? 'selected'
-                                : 'sold'
-                                }`}
-                              id='A1'
-                              onClick={this.chooseSeat}
-                            ></div>
-                            <div
-                              className='seat'
-                              id='A2'
-                              onClick={this.chooseSeat}
-                            ></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='space'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                          </div>
-                        </div>
-                        <div className='row-seat'>
-                          <div className='col-seat d-flex flex-row'>
-                            <div className='seating-key-col'>
-                              <p>B</p>
-                            </div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='space'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                          </div>
-                        </div>
-                        <div className='row-seat'>
-                          <div className='col-seat d-flex flex-row'>
-                            <div className='seating-key-col'>
-                              <p>C</p>
-                            </div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat selected'></div>
-                            <div className='seat selected'></div>
-                            <div className='seat selected'></div>
-                            <div className='seat'></div>
-                            <div className='space'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                          </div>
-                        </div>
-                        <div className='row-seat'>
-                          <div className='col-seat d-flex flex-row'>
-                            <div className='seating-key-col'>
-                              <p>D</p>
-                            </div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='space'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                          </div>
-                        </div>
-                        <div className='row-seat'>
-                          <div className='col-seat d-flex flex-row'>
-                            <div className='seating-key-col'>
-                              <p>E</p>
-                            </div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='space'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                          </div>
-                        </div>
-                        <div className='row-seat'>
-                          <div className='col-seat d-flex flex-row'>
-                            <div className='seating-key-col'>
-                              <p>F</p>
-                            </div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='space'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='love-seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                          </div>
-                        </div>
-                        <div className='row-seat'>
-                          <div className='col-seat d-flex flex-row'>
-                            <div className='seating-key-col'>
-                              <p>G</p>
-                            </div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat sold'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='space'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                            <div className='seat'></div>
-                          </div>
-                        </div>
+                          )
+                        })}
                         <div className='row-seat'>
                           <div className='col-seat d-flex flex-row'>
                             <div className='seating-key-col'></div>
-                            <div className='seat-key-row'>
-                              <p>1</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>2</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>3</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>4</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>5</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>6</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>7</p>
-                            </div>
-                            <div className='space'></div>
-                            <div className='seat-key-row'>
-                              <p>8</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>9</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>10</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>11</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>12</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>13</p>
-                            </div>
-                            <div className='seat-key-row'>
-                              <p>14</p>
-                            </div>
+                            {[...Array(14)].map((item, index) => {
+                              if (index + 1 === 8) {
+                                return (
+                                  <div className='space'></div>
+                                )
+                              }
+                              return (
+                                <div className='seat-key-row' key={String(index)}>
+                                  <p>{index + 1}</p>
+                                </div>
+                              )
+                            })}
                           </div>
                         </div>
                       </div>
@@ -363,11 +219,15 @@ export default class index extends Component {
                     variant={'outline-primary'}
                     className='btn-change-movie'
                     role='button'
+                    onClick={this.orderResult}
                   >
                     Change your movie
                   </Button>
-                  <Button variant='primary'>
-                    <Link to={`/payment/${this.props.id}`}>Checkout now</Link>
+                  <Button
+                    variant='primary'
+                    onClick={() => this.createTransaction()}
+                  >
+                    checkout
                   </Button>
                 </div>
               </Col>
@@ -376,29 +236,29 @@ export default class index extends Component {
                 <h5>Order Info</h5>
                 <div className='order-info'>
                   <div className='text-center'>
-                    <img src={imageOrder} alt='' />
-                    <h5>{cinemaOrder}</h5>
+                    <img src={imageCinema} alt='' />
+                    <h5>{cinemaName}</h5>
                   </div>
                   <Row className='d-flex justify-content-between mt-4'>
                     <p>Movie selected</p>
-                    <h6>{movieTicket[0].title}</h6>
+                    <h6>{title}</h6>
                   </Row>
                   <Row className='d-flex justify-content-between'>
-                    <p>Tuesday, 07 July 2020</p>
-                    <h6>{timeOrder}</h6>
+                    <p><Moment format='LL'>{date}</Moment></p>
+                    <h6>{time.slice(0, 5)}</h6>
                   </Row>
                   <Row className='d-flex justify-content-between'>
                     <p>One ticket price</p>
-                    <h6>${priceOrder}.00</h6>
+                    <h6>Rp {price}</h6>
                   </Row>
                   <Row className='r-flex justify-content-between'>
                     <p>Seat choosed</p>
-                    <h6>$C4, C5, C6</h6>
+                    <h6>{this.props.order.seatSelected.join(', ')}</h6>
                   </Row>
                   <hr />
                   <Row className='d-flex justify-content-between total align-items-center'>
                     <h6>Total Payment</h6>
-                    <p>$30</p>
+                    <p>{total}</p>
                   </Row>
                 </div>
               </Col>
@@ -410,3 +270,10 @@ export default class index extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  order: state.order,
+  auth: state.auth
+})
+const mapDispatchToProps = { selectSeat, removeSeat, createTransaction }
+export default connect(mapStateToProps, mapDispatchToProps)(Index)

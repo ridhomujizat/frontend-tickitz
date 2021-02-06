@@ -12,19 +12,22 @@ class Index extends Component {
     ...this.props
   }
 
+  componentDidMount () {
+    console.log(this.state.slug)
+  }
   selectedTime = (event) => {
     // if (event.target.className === 'disabled') {
     //   return this.setState({ time: null })
     // }
     const value = event.target.id.split(',')
     return this.props.selectTime({
-      idSchdule: value[0],
+      idSchedule: value[0],
       time: value[1],
       seta: value[2]
     })
   }
 
-  bookNow = (id) => {
+  bookNow = (slug) => {
     const { idMovie, date, image, price, title, name } = this.state
 
     return this.props.selectTime({
@@ -41,7 +44,7 @@ class Index extends Component {
     history.goBack()
   }
   render () {
-    const { idSchdule } = this.props.order
+    const { idSchedule } = this.props.order
     return (
       <div className='movie-schedule-card'>
         <div className='d-flex flex-row justify-content-start align-items-center'>
@@ -63,7 +66,7 @@ class Index extends Component {
                   // id={item.id}
                   id={value}
                   className={
-                    idSchdule === `${item.id}`
+                    idSchedule === `${item.id}`
                       ? 'selected'
                       : item.status
                   }
@@ -83,12 +86,21 @@ class Index extends Component {
           <h6>Rp. {this.props.price}/seat</h6>
         </Col>
         <Col xs={12} className='col-12 d-flex justify-content-between my-3'>
-          <Button onClick={this.goBack}>Book Now</Button>
+          <Link
+            to={`/cinema-order/${this.state.slug}`}
+          >
+            <Button
+              role='button'
+              onClick={() => this.bookNow(this.state.slug)}
+            >
+              Book Now
+          </Button>
+          </Link>
           <Link
             className='btn btn-outline-primary'
-            to={`/cinema-order/${this.props.id}`}
+            to={`/cinema-order/${this.state.slug}`}
             role='button'
-            onClick={() => this.bookNow(this.props.id)}
+            onClick={() => this.bookNow(this.state.slug)}
           >
             Add to cart
           </Link>

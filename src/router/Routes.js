@@ -3,8 +3,7 @@ import Login from '../pages/Login'
 import ForgetPassword from '../pages/ForgetPassword'
 import DetailMovie from '../pages/DetailMovie'
 import Order from '../pages/Order'
-import Payment from '../pages/Payment'
-import Ticket from '../pages/Ticket'
+// import Ticket from '../pages/Ticket'
 import AdminMovie from '../pages/AdminMovie'
 
 const routes = [
@@ -19,19 +18,19 @@ const routes = [
   //   route: "/profile",
   //   component: (res) => <Profile {...res} />,
   //   isExact: false,
+  // // },
+  // {
+  //   namePage: 'Ticket',
+  //   route: '/result-ticket/:id',
+  //   component: (res) => <Ticket {...res} />,
+  //   isExact: false
   // },
-  {
-    namePage: 'Ticket',
-    route: '/result-ticket/:id',
-    component: (res) => <Ticket {...res} />,
-    isExact: false
-  },
-  {
-    namePage: 'Payment',
-    route: '/payment/:id',
-    component: (res) => <Payment {...res} />,
-    isExact: false
-  },
+  // {
+  //   namePage: 'Payment',
+  //   route: '/payment/:slug',
+  //   component: (res) => <Payment {...res} />,
+  //   isExact: false
+  // },
   {
     namePage: 'Order Movie',
     route: '/cinema-order/:id',

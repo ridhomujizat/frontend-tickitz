@@ -14,6 +14,7 @@ class InputText extends Component {
           onChange={this.props.onChange}
           as={this.props.as}
           rows={this.props.rows}
+          defaultValue={this.props.defaultValue}
           required
         />
       </Form.Group>
