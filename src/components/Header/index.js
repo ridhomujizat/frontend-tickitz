@@ -11,6 +11,7 @@ import {
   Button
 } from 'react-bootstrap'
 import { LogoPurple } from '../../components/Logo'
+import { connect } from 'react-redux'
 
 import dProfile from '../../assets/images/user.jpeg'
 
