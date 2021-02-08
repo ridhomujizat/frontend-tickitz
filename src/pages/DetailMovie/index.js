@@ -47,16 +47,17 @@ class DetailMovie extends Component {
   async handleChange (event) {
     const typeOfInput = event.target.name
     const value = String(event.target.value)
+    await this.setState({ cinemas: [] })
     switch (typeOfInput) {
       case 'date': {
-        this.state.date = value
+        await this.setState({ date: value })
         // this.setState({ date: value })
-        this.updateSchedule()
+        await this.updateSchedule()
         break
       }
       case 'location': {
-        this.state.idLocation = value
-        this.updateSchedule()
+        await this.setState({ idLocation: value })
+        await this.updateSchedule()
         break
       }
       default: {
@@ -72,12 +73,12 @@ class DetailMovie extends Component {
 
     try {
       const response = await http().get(`/schedule/?slug=${slug}&${query}`)
-      this.setState({
+      await this.setState({
         cinemas: response.data.results.cinema,
         errorMessage: null
       })
     } catch (err) {
-      this.setState({
+      await this.setState({
         errorMessage: err.response.data.message,
         cinemas: []
       })

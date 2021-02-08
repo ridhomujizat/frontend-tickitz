@@ -3,6 +3,33 @@
 
 .header {
   background-color: $white;
+
+
+  .user-profile {
+    padding: 0 !important;
+  }
+
+  .dropdown-toggle {
+    padding: 0 !important;
+  }
+
+  .dropdown-menu {
+    margin-top: 210px;
+
+    a {
+      color: $black;
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+
+
+      &:hover {
+        background-color: $text-light;
+        color: $white;
+      }
+    }
+  }
+
   .navbar {
     /*=========================
     `Desktop Nav
@@ -21,6 +48,7 @@
         margin: 0 15px;
       }
     }
+
     .search-box {
       height: 40px;
       border-radius: 40px;
@@ -40,9 +68,11 @@
         margin-top: -10px;
         border: none;
         background: none;
+
         &:focus {
           box-shadow: none;
         }
+
         &:active {
           background-color: $white;
           box-shadow: none;
@@ -65,12 +95,14 @@
         }
       }
     }
+
     .btn-sign-up {
       max-height: 40px;
       color: $white;
       align-items: center;
       margin: auto;
     }
+
     .navbar-nav-right {
       .nav-link {
         color: $gray-500;
@@ -89,11 +121,20 @@
     }
 
     .user-profile {
+      margin-left: 20px;
+
       img {
         height: 50px;
         border-radius: 100%;
       }
     }
+
+    .profile-name {
+      @include text-medium;
+      color: $black;
+    }
+
+
 
     /*=========================
     `Mobile Nav
@@ -110,6 +151,7 @@
       a {
         color: $gray-600;
       }
+
       .copyrigth {
         color: $gray-400;
       }
@@ -117,12 +159,14 @@
       .nav-mobile-content-search {
         position: relative;
         padding-bottom: 0px;
+
         input {
           width: 90%;
           margin: auto;
           font-size: 16px;
           padding-left: 50px;
         }
+
         .nav-mobile-content-search-icon {
           color: $gray-600;
           position: absolute;
@@ -152,10 +196,16 @@
 }
 
 .fixed-nav-top {
-  background-color: $black;
   min-width: 100%;
   height: 96px;
+
   @include max-tablet() {
     height: 84px;
   }
+}
+
+
+.scrolled {
+  -webkit-box-shadow: 0px 10px 40px rgba(194, 194, 194, 0.4);
+  box-shadow: 0px 10px 40px rgba(194, 194, 194, 0.4);
 }

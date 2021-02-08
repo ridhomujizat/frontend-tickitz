@@ -3,12 +3,11 @@
 
 .info-sign {
   display: none;
+
   @include min-tablet() {
-    background: linear-gradient(
-        0deg,
+    background: linear-gradient(0deg,
         rgba(43, 21, 107, 0.8),
-        rgba(43, 21, 107, 0.8)
-      ),
+        rgba(43, 21, 107, 0.8)),
       url("../../assets/images/iron.png");
     background-size: cover;
     background-position: center;
@@ -23,10 +22,12 @@
 
     .info-sign-content {
       color: white;
+      padding-left: 50px;
 
       h1 {
         font-weight: 600;
       }
+
       p {
         font-size: 17px;
         line-height: 2.5rem;
@@ -51,6 +52,7 @@
           p {
             margin-bottom: 0;
           }
+
           p::before {
             margin-right: 10px;
             content: counter(item);

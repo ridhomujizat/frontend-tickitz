@@ -33,9 +33,10 @@ export const createTransaction = (token, data) => {
     params.append('total', total)
     try {
       const response = await http(token).post('transaction', params)
+      console.log(response.data.results[0].id)
       dispatch({
         type: 'CREATE_TRANSACTION',
-        payload: response.data.results.id
+        payload: response.data.results[0].id
       })
     } catch (err) {
       const { message } = err.response.data

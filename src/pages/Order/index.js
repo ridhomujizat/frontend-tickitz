@@ -33,18 +33,16 @@ class Index extends Component {
       return this.props.removeSeat({ seat })
     }
   }
-  orderResult = async () => {
-    const data = this.props.order
-    const token = this.props.auth.token
-    this.props.createTransaction(token, data)
+  orderResult = () => {
+    const { idTransaction } = this.props.order
+    this.props.history.push(`/payment/${idTransaction}?statusPayment=pending`)
   }
 
-  createTransaction = () => {
-    this.orderResult()
-    setTimeout(() => {
-      const { idTransaction } = this.props.order
-      this.props.history.push(`/payment/${idTransaction}?statusPayment=pending`)
-    }, 200)
+  createTransaction = async () => {
+    const data = this.props.order
+    const token = this.props.auth.token
+    await this.props.createTransaction(token, data)
+    await this.orderResult()
   }
 
   render () {

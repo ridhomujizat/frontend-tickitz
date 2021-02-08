@@ -38,9 +38,9 @@ class Index extends Component {
     })
     const response = await http(token).get('profile')
     this.setState({
-      name: `${response.data.results[0].firstName} ${response.data.results[0].lastName}`,
-      email: response.data.results[0].email,
-      phone: response.data.results[0].phone
+      name: `${response.data.results.firstName} ${response.data.results.lastName}`,
+      email: response.data.results.email,
+      phone: response.data.results.phone
     })
   }
 

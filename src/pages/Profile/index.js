@@ -6,9 +6,14 @@ import Footer from '../../components/Footer'
 import ProfileInfo from '../../layout/ProfileInfo'
 import ProfileSetting from '../../layout/ProfileSetting'
 import OrderHistory from '../../layout/ProfileHistory'
-export default class index extends Component {
+
+import { connect } from 'react-redux'
+import { profile } from '../../redux/actions/profile'
+
+class index extends Component {
   state = {
-    accountSet: true
+    accountSet: true,
+    profileAvailable: false
   }
 
   changeContent = () => {
@@ -17,8 +22,13 @@ export default class index extends Component {
     }
     return this.setState({ accountSet: true })
   }
+
+  async componentDidMount () {
+    const { token } = this.props.auth
+    await this.props.profile(token)
+  }
   render () {
-    const { accountSet } = this.state
+    const { accountSet, ...data } = this.state
     return (
       <>
         <Header />
@@ -47,7 +57,7 @@ export default class index extends Component {
                   </Row>
                 </div>
 
-                {accountSet === true ? <ProfileSetting /> : <OrderHistory />}
+                {accountSet === true ? <ProfileSetting data={data} /> : <OrderHistory />}
               </Col>
             </Row>
           </Container>
@@ -57,3 +67,9 @@ export default class index extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+const mapDispatchToProps = { profile }
+export default connect(mapStateToProps, mapDispatchToProps)(index)

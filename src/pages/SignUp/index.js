@@ -46,7 +46,7 @@ class index extends Component {
     return (
       <>
         <div>
-          <div id='sign'>
+          <div id='sign' className='container-fluid'>
             <Row className='h-100'>
               <InfoSign
                 heading='Lets build your account'

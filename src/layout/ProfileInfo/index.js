@@ -2,11 +2,25 @@ import React, { Component } from 'react'
 import './index.scss'
 import { Row, Col } from 'react-bootstrap'
 import { BsThreeDots } from 'react-icons/bs'
-import user from '../../assets/images/user.jpeg'
 import star from '../../assets/images/star.svg'
 
-export default class index extends Component {
+import { connect } from 'react-redux'
+import { updateProfile } from '../../redux/actions/profile'
+const { REACT_APP_API_URL: API_URL } = process.env
+
+class index extends Component {
+  state = {
+    file: null
+  }
+
+  uploadImage = async (e) => {
+    console.log(e)
+    const { token } = this.props.auth
+    await this.props.updateProfile(token, e)
+  }
+
   render () {
+    const { firstName, image, lastName } = this.props.profile
     return (
       <>
         <div className='profile-content'>
@@ -20,10 +34,19 @@ export default class index extends Component {
                 <BsThreeDots />
               </p>
             </Col>
-            <Col xs={12} className='text-center photo-profile my-3'>
-              <img src={user} alt='profile user' />
-              <h5 className='my-3'>Jonas El Rodriguez</h5>
-              <p className='my-1'>Moviegoers</p>
+            <Col xs={12} className='text-center  my-3'>
+              <div className='photo-profile'>
+
+                <div className="upload">
+                  <label htmlFor='upload-photo'>
+                    <img src={image !== 'null' ? `${API_URL}${image}` : `${API_URL}uploads/profile/profile-default.jpg`} alt='profile user' className='file' />
+                    <p className="upload-hover"></p>
+                  </label>
+                  <input type='file' name='photo' id='upload-photo' onChange={(e) => this.uploadImage(e.target.files[0])} />
+                </div>
+              </div>
+              <h5 className='my-3'>{firstName} {lastName}</h5>
+              <div className='my-1'>Moviegoers</div>
               <hr />
             </Col>
             <Col xs={12} className='loyalty-point'>
@@ -62,3 +85,12 @@ export default class index extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile
+})
+
+const mapDispatchToProps = { updateProfile }
+
+export default connect(mapStateToProps, mapDispatchToProps)(index)

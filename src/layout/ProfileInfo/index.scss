@@ -5,18 +5,70 @@
   border-radius: 15px;
   background-color: $white;
   padding: 40px;
+
   .info {
     p {
       font-size: 27px;
       color: $purple;
     }
   }
+
+  //Porfile
   .photo-profile {
     img {
       border-radius: 100%;
-      height: 150px;
+      max-height: 150px;
+      max-width: 150px;
+      object-fit: cover;
+    }
+
+    .upload-hover {
+      display: none;
+      background-color: yellow;
+
+      width: 0px;
+      height: 0px;
+
+      &::before {
+        content: url("../../assets/images/add.png");
+        color: white;
+        position: absolute;
+        background-color: $black;
+        opacity: 20%;
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        z-index: 2;
+        top: 0;
+      }
+
+
+    }
+
+    &:hover {
+      p {
+        display: flex;
+      }
+    }
+
+
+
+    .upload {
+      label {
+        cursor: pointer;
+      }
+
+      #upload-photo {
+        opacity: 0;
+        position: absolute;
+        z-index: -1;
+      }
+
     }
   }
+
+  //Profile end
+
   .card-point {
     width: 100%;
     height: 100px;
@@ -30,13 +82,16 @@
       height: 80px;
       padding: 10px;
       font-weight: 700;
+
       span {
         font-size: 12px;
       }
+
       img {
         height: 35px;
       }
     }
+
     .circle {
       height: 80px;
       width: 100%;
@@ -55,6 +110,7 @@
         margin-top: -30px;
         margin-right: -10px;
       }
+
       &::after {
         content: "";
         width: 90px;
@@ -79,6 +135,7 @@
       border-radius: 10px;
       background-image: linear-gradient(75deg, #5f2eea 31.28%, #7647f9 62.16%);
     }
+
     .bg-2 {
       top: 0;
       width: 90%;

@@ -12,20 +12,31 @@ import {
 } from 'react-bootstrap'
 import { LogoPurple } from '../../components/Logo'
 import { connect } from 'react-redux'
-
-import dProfile from '../../assets/images/user.jpeg'
+import ProfileItem from './ProfileItem'
+const { REACT_APP_API_URL: API_URL } = process.env
 
 class Header extends Component {
   state = {
-    isUser: false
+    dropShadow: ''
+  }
+
+  componentDidMount = () => {
+    document.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        this.setState({ dropShadow: 'scrolled' })
+      } else {
+        this.setState({ dropShadow: '' })
+      }
+    })
   }
   render () {
-    const { isUser } = this.state
+    const { dropShadow } = this.state
+    const { image, role, name } = this.props.auth
     return (
       <>
-        <div className='fixed-top header'>
-          <Container>
-            <Navbar expand='lg'>
+        <div className={`fixed-top header ${dropShadow}`}>
+          <Container >
+            <Navbar expand='lg' >
               <Navbar.Brand>
                 <LogoPurple size='900' />
               </Navbar.Brand>
@@ -36,8 +47,8 @@ class Header extends Component {
                   <Nav.Link>Buy Ticket</Nav.Link>
                 </Nav>
 
-                <div className='d-flex flex-row justify-content-end navbar-nav-right'>
-                  <NavDropdown
+                <div className='d-flex flex-row justify-content-end navbar-nav-right align-items-center'>
+                  {/* <NavDropdown
                     title='Dropdown'
                     id='basic-nav-dropdown'
                     className='nav-link'
@@ -51,7 +62,7 @@ class Header extends Component {
                     <NavDropdown.Item href='#action/3.3'>
                       Bandung
                     </NavDropdown.Item>
-                  </NavDropdown>
+                  </NavDropdown> */}
                   <Form inline className='search-box'>
                     <FormControl
                       type='text'
@@ -73,14 +84,18 @@ class Header extends Component {
                       </svg>
                     </Button>
                   </Form>
-                  {isUser
-                    ? (<Link to='/profile' className='user-profile'>
-                      <img src={dProfile} alt='User Profile' />
+                  {role === null
+                    ? (<Link to='/sign-up' className='btn btn-primary btn-sign-up'>
+                      Sign Up
                     </Link>)
-                    : (
-                      <Link to='/sign-up' className='btn btn-primary btn-sign-up'>
-                        Sign Up
-                      </Link>)}
+                    : <>
+                      <ProfileItem image={image} user={role} name={name} />
+                      <div className='user-profile'>
+                        <img src={`${API_URL}${image}`} alt='User Profile' />
+                      </div>
+                    </>
+                  }
+
                 </div>
               </Navbar>
 
