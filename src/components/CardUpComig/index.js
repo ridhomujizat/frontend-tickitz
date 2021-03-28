@@ -11,7 +11,7 @@ export default class index extends Component {
         <p>{this.props.genre}</p>
         <Link
           className='btn btn-outline-primary btn-block'
-          to={`/movie-detail/${this.props.id}`}
+          to={`/movie-detail/${this.props.slug}`}
         >
           Detail
         </Link>
