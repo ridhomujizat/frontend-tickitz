@@ -6,7 +6,7 @@ export const getMovie = (cond) => {
     try {
       const query = cond
         ? qs.stringify({ ...cond })
-        : {}
+        : ''
       dispatch({
         type: 'SET_MESSAGE_NULL'
       })

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer'
 import Button from '../../components/Button'
 import Moment from 'react-moment'
 import seat from '../../helper/seatType'
-
+import rupiah from '../../helper/rupiah'
 import { connect } from 'react-redux'
 import { selectSeat, removeSeat, createTransaction } from '../../redux/actions/order'
 import http from '../../helper/http'
@@ -247,7 +247,7 @@ class Index extends Component {
                   </Row>
                   <Row className='d-flex justify-content-between'>
                     <p>One ticket price</p>
-                    <h6>Rp {price}</h6>
+                    <h6>Rp {rupiah(price)}</h6>
                   </Row>
                   <Row className='r-flex justify-content-between'>
                     <p>Seat choosed</p>
@@ -256,7 +256,7 @@ class Index extends Component {
                   <hr />
                   <Row className='d-flex justify-content-between total align-items-center'>
                     <h6>Total Payment</h6>
-                    <p>{total}</p>
+                    <p>Rp{rupiah(total)}</p>
                   </Row>
                 </div>
               </Col>

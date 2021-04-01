@@ -35,7 +35,7 @@ class DetailMovie extends Component {
         id: resultMovie.data.results.id,
         movie: resultMovie.data.results
       })
-      const response = await http().get(`/schedule/?slug=${slug}`)
+      const response = await http().get(`/schedule/?slug=${slug}&date=2021-04-01&idLocation=3`)
       this.setState({
         cinemas: response.data.results.cinema
       })

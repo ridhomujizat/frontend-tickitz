@@ -38,11 +38,18 @@ export const login = (email, password) => {
         })
       }
     } catch (err) {
-      const { message } = err.response.data
-      dispatch({
-        type: 'SET_LOGIN_MESSAGE',
-        payload: message
-      })
+      if (err.response) {
+        const { message } = err.response.data
+        dispatch({
+          type: 'SET_LOGIN_MESSAGE',
+          payload: message
+        })
+      } else {
+        dispatch({
+          type: 'SET_LOGIN_MESSAGE',
+          payload: 'Cant connect to server'
+        })
+      }
     }
   }
 }
@@ -63,11 +70,18 @@ export const register = (email, password) => {
         payload: result.data.message
       })
     } catch (err) {
-      const { message } = err.response.data
-      dispatch({
-        type: 'SET_LOGIN_MESSAGE',
-        payload: message
-      })
+      if (err.response) {
+        const { message } = err.response.data
+        dispatch({
+          type: 'SET_LOGIN_MESSAGE',
+          payload: message
+        })
+      } else {
+        dispatch({
+          type: 'SET_LOGIN_MESSAGE',
+          payload: 'Cant connect to server'
+        })
+      }
     }
   }
 }

@@ -13,13 +13,9 @@ class NowShowing extends Component {
   }
   async componentDidMount () {
     await this.props.getMovie({ status: 'released' })
-
-    const { results } = this.props.movie.movieNowShowing
-    await this.setState({ movie: results })
   }
   render () {
-    const { errorMessage } = this.props.movie
-    const { movie } = this.state
+    const { errorMessage, movieNowShowing } = this.props.movie
     return (
       <div id='now-showing'>
         <Container>
@@ -34,7 +30,7 @@ class NowShowing extends Component {
           <Row className='pb-5'>
             <Col className='slider'>
               {errorMessage === null
-                ? movie
+                ? movieNowShowing.results
                   .map((item) => {
                     return (
                       <CardNowShow
@@ -47,7 +43,7 @@ class NowShowing extends Component {
                       />
                     )
                   })
-                : (<>test</>)
+                : (<p>{errorMessage}</p>)
               }
             </Col>
           </Row>
