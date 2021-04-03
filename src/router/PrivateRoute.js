@@ -11,7 +11,7 @@ const PrivateRoute = ({ component: Component, auth, role, ...rest }) => {
       } else if (auth.token && auth.role === 'ADMIN' && role === 'ADMIN') {
         return <Component {...props} />
       } else {
-        return <Redirect to='/login' />
+        return <Redirect to='/sign-in' />
       }
     }} />
   )

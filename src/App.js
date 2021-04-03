@@ -11,12 +11,13 @@ import PrivateRoute from './router/PrivateRoute'
 import Profile from './pages/Profile'
 
 import PublicRoute from './router/PublicRoute'
-import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import ForgetPassword from './pages/ForgetPassword'
+import ResetPassword from './pages/ResetPassword'
 import Payment from './pages/Payment'
 import Ticket from './pages/Ticket'
 import AdminMovie from './pages/AdminMovie'
+import SignIn from './pages/SignIn'
 
 export default function App () {
   const { store, persistor } = persistedStore()
@@ -26,9 +27,10 @@ export default function App () {
         <Router>
           <ScrollToTop>
             <Switch>
-              <PublicRoute restricted={true} component={Login} path='/login' />
+              <PublicRoute restricted={true} component={SignIn} path='/sign-in' />
               <PublicRoute restricted={true} component={SignUp} path='/sign-up' />
               <PublicRoute restricted={true} component={ForgetPassword} path='/forget-password' />
+              <PublicRoute restricted={true} component={ResetPassword} path='/reset-password' />
               <PrivateRoute role={'USER'} component={Payment} path='/payment/:id' />
               <PrivateRoute role={'USER'} component={Profile} path='/profile' />
               <PrivateRoute role={'USER'} component={Ticket} path='/result-ticket/:id' />

@@ -34,3 +34,14 @@ body {
 .slide {
   flex-shrink: 0;
 }
+
+.error-message {
+  margin-bottom: 20px;
+}
+
+.btn-loading {
+  height: 50px;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+}

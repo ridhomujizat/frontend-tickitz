@@ -24,7 +24,8 @@ class InputPassword extends Component {
           type={this.state.passwordShow ? 'text' : 'password'}
           placeholder={this.props.placeholder}
           onChange={this.props.onChange}
-          required
+          required value={this.props.value}
+          onBlur={this.props.onBlur}
         />
         <p onClick={this.showPassword}>
           {this.state.passwordShow

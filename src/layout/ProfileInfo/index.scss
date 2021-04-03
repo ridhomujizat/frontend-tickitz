@@ -22,6 +22,11 @@
       object-fit: cover;
     }
 
+    .spinner {
+      margin-top: 75px;
+      margin-bottom: 75px;
+    }
+
     .upload-hover {
       display: none;
       background-color: yellow;
@@ -146,4 +151,12 @@
       background-color: rgba(95, 46, 234, 0.4);
     }
   }
+}
+
+.text-error {
+  color: red;
+}
+
+.text-success {
+  color: green;
 }

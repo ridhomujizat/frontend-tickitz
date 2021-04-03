@@ -18,7 +18,7 @@ export default class InfoSign extends Component {
               {orderList.map((item, index) => {
                 return (
                   <div className='older-list-status' key={String(index)}>
-                    <p className={` ${index === 0 ? 'active' : ''}`}>{item}</p>
+                    <p className={` ${index === this.props.activeNumber ? 'active' : ''}`}>{item}</p>
                     {index + 1 === orderList.length
                       ? ('')
                       : (<div className='line'></div>)}

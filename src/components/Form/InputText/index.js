@@ -14,6 +14,8 @@ class InputText extends Component {
           onChange={this.props.onChange}
           as={this.props.as}
           rows={this.props.rows}
+          value={this.props.value}
+          onBlur={this.props.onBlur}
           defaultValue={this.props.defaultValue}
           required
         />

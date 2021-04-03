@@ -5,8 +5,8 @@ const initialState = {
   image: 'uploads/profile/profile-default.jpg',
   role: null,
   email: null,
-  message: '',
-  errorMsg: ''
+  message: null,
+  errorMsg: null
 }
 
 const authReducer = (state = initialState, action) => {

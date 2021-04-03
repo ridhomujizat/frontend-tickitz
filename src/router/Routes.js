@@ -1,5 +1,5 @@
 import Home from '../pages/Home'
-import Login from '../pages/Login'
+// import SignIn from '../pages/SignIn'
 import ForgetPassword from '../pages/ForgetPassword'
 import DetailMovie from '../pages/DetailMovie'
 import Order from '../pages/Order'
@@ -55,12 +55,12 @@ const routes = [
   //   component: (res) => <SignUp {...res} />,
   //   isExact: false,
   // },
-  {
-    namePage: 'login',
-    route: '/login',
-    component: (res) => <Login {...res} />,
-    isExact: false
-  },
+  // {
+  //   namePage: 'login',
+  //   route: '/login',
+  //   component: (res) => <SignIn {...res} />,
+  //   isExact: false
+  // },
   {
     namePage: 'Home',
     route: '/',

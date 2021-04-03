@@ -34,7 +34,7 @@ class index extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
   render () {
-    const { firstName, lastName, phone, profileAvailable, message } = this.props.profile
+    const { firstName, lastName, phone, profileAvailable, message } = this.props.auth
     const { email } = this.props.auth
 
     return (
@@ -148,7 +148,6 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile,
   auth: state.auth
 })
 

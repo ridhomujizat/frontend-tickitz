@@ -16,6 +16,8 @@ class InputNumber extends Component {
             type={this.props.type}
             placeholder={this.props.placeholder}
             onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
+            value={this.props.value}
             defaultValue={this.props.defaultValue}
             required
           />
