@@ -35,7 +35,7 @@ class Login extends Component {
       if (this.props.location.search.indexOf('success=true') !== -1) {
         this.setState({ activated: true, isMassageSucces: 'Activate success, you can sign with your account' })
       } else if (this.props.location.search.indexOf('reset=true') !== -1) {
-        this.setState({ activated: true, isMassageSucces: 'Reset success,ou can sign in with new password' })
+        this.setState({ activated: true, isMassageSucces: 'Reset success, you can sign in with new password' })
       }
       setTimeout(() => {
         this.setState({ isMassageSucces: false })
@@ -44,9 +44,12 @@ class Login extends Component {
   }
   submitData = async (value) => {
     const { email, password } = value
-    this.setState({ isLoading: true, isMassage: true })
+    this.setState({ isLoading: true })
     await this.props.login(email, password)
     await this.setState({ isLoading: false })
+    if (this.props.auth.errorMsg) {
+      this.setState({ isMassage: true })
+    }
     setTimeout(() => {
       this.setState({ isMassage: false })
     }, 5000)

@@ -138,8 +138,7 @@ class index extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  profile: state.profile
+  auth: state.auth
 })
 
 const mapDispatchToProps = { updateProfile }

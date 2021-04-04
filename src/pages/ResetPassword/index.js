@@ -55,7 +55,7 @@ class index extends Component {
     } else if (password.length < 8 || validPassword.length < 8) {
       errors.msg = 'Password have at least 8 characters'
     } else if (password !== validPassword) {
-      errors.msg = 'New password & repeat password not same'
+      errors.msg = 'New password & confirm password not same'
     }
     return errors
   }
@@ -121,7 +121,7 @@ class index extends Component {
                           />
                           <InputPassword
                             name='validPassword'
-                            label={'Validate Password'}
+                            label={'Confirm Password'}
                             placeholder={'Validate Your New Password'}
                             onChange={handleChange}
                             onBlur={handleBlur}

@@ -11,15 +11,15 @@ export const updateProfile = (token, data) => {
       password
     } = data
     const form = new FormData()
-
+    console.log(form)
     if (firstName) {
-      form.append('phone', firstName)
+      form.append('firstName', firstName)
     }
     if (lastName) {
-      form.append('phone', lastName)
+      form.append('lastName', lastName)
     }
     if (phone) {
-      form.append('phone', String(phone))
+      form.append('phone', phone)
     }
     if (email) {
       form.append('email', email)
