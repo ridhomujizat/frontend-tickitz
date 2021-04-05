@@ -5,7 +5,7 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
 import authReducer from './auth'
 import orderReducer from './order'
-import movieReducer from './movei'
+import movieReducer from './movie'
 
 const authConfig = {
   key: 'authReducer',

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './index.scss'
 import { Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import Button from '../../components/Button'
-
 import { connect } from 'react-redux'
 import { selectTime } from '../../redux/actions/order'
 
@@ -12,25 +11,17 @@ class Index extends Component {
     ...this.props
   }
 
-  componentDidMount () {
-    console.log(this.state.slug)
-  }
   selectedTime = (event) => {
-    // if (event.target.className === 'disabled') {
-    //   return this.setState({ time: null })
-    // }
     const value = event.target.id.split(',')
     return this.props.selectTime({
       idSchedule: value[0],
-      time: value[1],
-      seta: value[2]
+      time: value[1].slice(0, 5)
     })
   }
 
-  bookNow = (slug) => {
+  bookNow = async () => {
     const { idMovie, date, image, price, title, name } = this.state
-
-    return this.props.selectTime({
+    await this.props.selectTime({
       title: title,
       idMovie: idMovie,
       date: date,
@@ -38,10 +29,9 @@ class Index extends Component {
       price: price,
       cinemaName: name
     })
-  }
+    const { slug } = this.props.match.params
 
-  goBack = () => {
-    history.goBack()
+    return this.props.history.push(`/cinema-order/${slug}`)
   }
   render () {
     const { idSchedule } = this.props.order
@@ -86,21 +76,17 @@ class Index extends Component {
           <h6>Rp. {this.props.price}/seat</h6>
         </Col>
         <Col xs={12} className='col-12 d-flex justify-content-between my-3'>
-          <Link
-            to={`/cinema-order/${this.state.slug}`}
+          <Button
+            role='button'
+            onClick={() => this.bookNow()}
           >
-            <Button
-              role='button'
-              onClick={() => this.bookNow(this.state.slug)}
-            >
-              Book Now
+            Book Now
           </Button>
-          </Link>
           <Link
             className='btn btn-outline-primary'
-            to={`/cinema-order/${this.state.slug}`}
+            to={`/cinema-order/${this.props.slug}`}
             role='button'
-            onClick={() => this.bookNow(this.state.slug)}
+            onClick={() => this.bookNow(this.props.slug)}
           >
             Add to cart
           </Link>
@@ -114,4 +100,4 @@ const mapStateToProps = state => ({
   order: state.order
 })
 const mapDispatchToProps = { selectTime }
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Index))

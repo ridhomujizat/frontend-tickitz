@@ -17,28 +17,30 @@ class DetailMovie extends Component {
     id: null,
     movie: {},
     cinemas: [],
-    date: [],
+    date: null,
     idLocation: null,
-    errorMessage: null,
+    errorMessage: 'Choose date and location first',
     slug: ''
   }
 
   async componentDidMount () {
     window.scrollTo(0, 0)
     const { slug } = this.props.match.params
-    this.setState({
-      slug: slug
-    })
+    const { search } = this.props.location
     try {
       const resultMovie = await http().get(`/movies/${slug}`)
-      this.setState({
+      await this.setState({
         id: resultMovie.data.results.id,
         movie: resultMovie.data.results
       })
-      const response = await http().get(`/schedule/?slug=${slug}&date=2021-04-01&idLocation=3`)
-      this.setState({
-        cinemas: response.data.results.cinema
-      })
+      if (search) {
+        const query = qs.parse(search.replace('?', ''))
+        await this.setState({
+          slug: slug,
+          ...query
+        })
+        await this.updateSchedule()
+      }
     } catch (err) {
       this.setState({ errorMessage: err.response.data.message })
     }
@@ -47,22 +49,32 @@ class DetailMovie extends Component {
   async handleChange (event) {
     const typeOfInput = event.target.name
     const value = String(event.target.value)
-    await this.setState({ cinemas: [] })
+    const { search } = this.props.location
+    const query = qs.parse(search.replace('?', ''))
     switch (typeOfInput) {
       case 'date': {
         await this.setState({ date: value })
+        await this.props.history.push({
+          date: qs.stringify(value)
+        })
+        query.date = value
         // this.setState({ date: value })
-        await this.updateSchedule()
         break
       }
       case 'location': {
         await this.setState({ idLocation: value })
-        await this.updateSchedule()
+        query.idLocation = value
         break
       }
       default: {
         break
       }
+    }
+    await this.props.history.push({
+      search: qs.stringify(query)
+    })
+    if (this.state.date && this.state.idLocation) {
+      await this.updateSchedule()
     }
   }
 
@@ -159,8 +171,8 @@ class DetailMovie extends Component {
                   <Col xs={12} md={6} lg={4} key={String(item.idCinema)}>
                     <CardMovieSchedule
                       slug={slug}
-                      title={movie.title}
-                      idMovie={movie.id}
+                      title={this.state.movie.title}
+                      idMovie={this.state.movie.id}
                       name={item.name}
                       image={`${API_URL}${item.image}`}
                       address={item.address}

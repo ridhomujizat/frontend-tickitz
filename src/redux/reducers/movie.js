@@ -12,6 +12,7 @@ const initialstate = {
     totalPage: 0,
     results: []
   },
+  schedule: [],
   errorMessage: null
 }
 
@@ -21,6 +22,12 @@ const authReducer = (state = initialstate, action) => {
       return {
         ...state,
         ...action.payload
+      }
+    }
+    case 'SET_SCHEDULE': {
+      return {
+        ...state,
+        schedule: action.payload
       }
     }
     case 'SET_MESSAGE': {

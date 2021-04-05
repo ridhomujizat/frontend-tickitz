@@ -38,11 +38,18 @@ export const createTransaction = (token, data) => {
         payload: response.data.results[0].id
       })
     } catch (err) {
-      const { message } = err.response.data
-      dispatch({
-        type: 'TRANSACTION_MSG',
-        payload: message
-      })
+      if (err.response) {
+        const { message } = err.response.data
+        dispatch({
+          type: 'TRANSACTION_MSG',
+          payload: message
+        })
+      } else {
+        dispatch({
+          type: 'TRANSACTION_MSG',
+          payload: 'Cant connect to server'
+        })
+      }
     }
   }
 }
@@ -64,11 +71,18 @@ export const updateTransaction = (token, id, data) => {
         payload: response.data.results[0].id
       })
     } catch (err) {
-      const { message } = err.response.data
-      dispatch({
-        type: 'TRANSACTION_MSG',
-        payload: message
-      })
+      if (err.response) {
+        const { message } = err.response.data
+        dispatch({
+          type: 'TRANSACTION_MSG',
+          payload: message
+        })
+      } else {
+        dispatch({
+          type: 'TRANSACTION_MSG',
+          payload: 'Cant connect to server'
+        })
+      }
     }
   }
 }

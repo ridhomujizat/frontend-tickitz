@@ -23,9 +23,13 @@ class Index extends Component {
     console.log(this.props.match)
 
     const responsTransaction = await http(token).get(`transaction/${id}`)
-    this.setState({
-      ...responsTransaction.data.results
-    })
+    if (responsTransaction.data.results.status === 'success') {
+      this.setState({
+        ...responsTransaction.data.results
+      })
+    } else {
+      this.props.history.push(`/payment/${id}`)
+    }
   }
 
   render () {

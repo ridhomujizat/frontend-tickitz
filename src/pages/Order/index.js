@@ -18,10 +18,14 @@ class Index extends Component {
     sold: []
   }
   async componentDidMount () {
+    const { slug } = this.props.match.params
     const response = await http().get(`/transaction/seat/${this.props.order.idSchedule}`)
     this.setState({
-      sold: response.data.result.map(item => item.seatSelected)
+      sold: response.data.result
     })
+    if (this.props.order.time === null) {
+      return this.props.history.push(`/movie-detail/${slug}`)
+    }
   }
   chooseSeat = (event) => {
     const seat = event.target.id
@@ -224,6 +228,7 @@ class Index extends Component {
                   <Button
                     variant='primary'
                     onClick={() => this.createTransaction()}
+                    disabled={seatSelected.length === 0}
                   >
                     checkout
                   </Button>
@@ -243,7 +248,7 @@ class Index extends Component {
                   </Row>
                   <Row className='d-flex justify-content-between'>
                     <p><Moment format='LL'>{date}</Moment></p>
-                    <h6>{time.slice(0, 5)}</h6>
+                    <h6>{time}</h6>
                   </Row>
                   <Row className='d-flex justify-content-between'>
                     <p>One ticket price</p>

@@ -33,7 +33,7 @@ const routes = [
   // },
   {
     namePage: 'Order Movie',
-    route: '/cinema-order/:id',
+    route: '/cinema-order/:slug',
     component: (res) => <Order {...res} />,
     isExact: false
   },
