@@ -1,0 +1,47 @@
+@import "../../assets/scss/variable.scss";
+@import "../../assets/scss/mixin.scss";
+
+.fitur {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+
+  .setting {
+    padding-left: 10px;
+    // margin-left: 20px;
+  }
+
+  .movie-list {
+    margin: 20px 0px;
+
+    .loading {
+      height: 200px;
+    }
+
+    .card-movie {
+      width: 195px;
+      margin: 15px;
+      padding: 15px;
+      border: 1px solid $gray-300;
+      border-radius: 8px;
+
+      h3 {
+        @include text-medium;
+        color: $black;
+      }
+
+      p {
+        @include text-x-small;
+        color: $text-light;
+      }
+
+      img {
+        border-radius: 8px;
+        height: 240px;
+        width: 160px;
+        object-fit: cover;
+      }
+    }
+  }
+
+}

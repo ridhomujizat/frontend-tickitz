@@ -1,23 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './index.scss'
 import { Button as ButtonBootstrap } from 'react-bootstrap'
 
-class Button extends Component {
-  render () {
-    return (
-      <ButtonBootstrap
-        variant={this.props.variant}
-        type={this.props.type}
-        value={this.props.value}
-        block={this.props.block}
-        className={this.props.className}
-        onClick={this.props.onClick}
-        disabled={this.props.disabled}
-      >
-        {this.props.children}
-      </ButtonBootstrap>
-    )
-  }
+function Button (props) {
+  return (
+    <ButtonBootstrap
+      variant={props.variant}
+      type={props.type}
+      value={props.value}
+      block={props.block}
+      className={props.className}
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
+      {props.children}
+    </ButtonBootstrap>
+  )
 }
 
 export default Button

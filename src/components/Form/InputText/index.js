@@ -17,6 +17,7 @@ class InputText extends Component {
           value={this.props.value}
           onBlur={this.props.onBlur}
           defaultValue={this.props.defaultValue}
+          className={this.props.className}
           required
         />
       </Form.Group>

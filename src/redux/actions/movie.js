@@ -25,14 +25,13 @@ export const getMovie = (cond) => {
             movieUpcoming: response.data.pageInfo
           }
         })
-      } else {
-        dispatch({
-          type: 'SET_MOVIE',
-          payload: {
-            movie: response.data.pageInfo
-          }
-        })
       }
+      dispatch({
+        type: 'SET_MOVIE',
+        payload: {
+          movie: response.data.pageInfo
+        }
+      })
     } catch (err) {
       if (err.response) {
         const { message } = err.response.data

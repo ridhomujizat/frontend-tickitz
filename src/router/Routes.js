@@ -5,7 +5,7 @@ import DetailMovie from '../pages/DetailMovie'
 import Order from '../pages/Order'
 // import Ticket from '../pages/Ticket'
 import AdminMovie from '../pages/AdminMovie'
-
+import ViewAll from '../pages/ViewAll/index'
 const routes = [
   {
     namePage: 'Admin',
@@ -31,6 +31,12 @@ const routes = [
   //   component: (res) => <Payment {...res} />,
   //   isExact: false
   // },
+  {
+    namePage: 'Movies',
+    route: '/movies',
+    component: (res) => <ViewAll {...res} />,
+    isExact: false
+  },
   {
     namePage: 'Order Movie',
     route: '/cinema-order/:slug',

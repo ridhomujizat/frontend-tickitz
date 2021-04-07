@@ -24,7 +24,7 @@ class NowShowing extends Component {
               <h4>Now Showing</h4>
             </Col>
             <Col className='text-right'>
-              <Link to={'/'}>view all</Link>
+              <Link to={'/movies?status=released'}>view all</Link>
             </Col>
           </Row>
           <Row className='pb-5'>

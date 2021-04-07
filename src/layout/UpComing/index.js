@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './index.scss'
 import { Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import CardUpComing from '../../components/CardUpComig'
 import { connect } from 'react-redux'
@@ -41,7 +42,7 @@ class UpcomingMovie extends Component {
           <Container>
             <div className='d-flex container justify-content-between upcoming-text mt-4'>
               <h4>Upcoming Movies</h4>
-              <h5 onClick={this.fullMovie}>view all</h5>
+              <Link to={'/movies?status=upcoming'}>View all</Link>
             </div>
             <div className='slider upcoming-button'>
               {month.map((item, index) => {

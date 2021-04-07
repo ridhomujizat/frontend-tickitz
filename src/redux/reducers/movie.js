@@ -1,5 +1,10 @@
 const initialstate = {
-  movie: null,
+  movie: {
+    totalData: 0,
+    currentPage: 0,
+    totalPage: 0,
+    results: []
+  },
   movieNowShowing: {
     totalData: 0,
     currentPage: 0,
