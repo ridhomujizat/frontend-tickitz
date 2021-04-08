@@ -5,7 +5,7 @@ import { BsThreeDots } from 'react-icons/bs'
 import star from '../../assets/images/star.svg'
 
 import { connect } from 'react-redux'
-import { updateProfile } from '../../redux/actions/profile'
+import { updateProfile, deleteImage } from '../../redux/actions/profile'
 const { REACT_APP_API_URL: API_URL } = process.env
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -51,6 +51,15 @@ class index extends Component {
     }, 2000)
   }
 
+  deleteImage = async () => {
+    const { token } = this.props.auth
+    this.setState({ isLoading: true })
+    await this.props.deleteImage(token)
+    this.setState({ isLoading: false, message: 'Update profile succesfully', success: true })
+    setTimeout(() => {
+      this.setState({ isMassage: false, message: null })
+    }, 2000)
+  }
   triggerInputFile = () => {
     console.log('lol')
     this.fileInput.click()
@@ -75,7 +84,7 @@ class index extends Component {
 
                   <Dropdown.Menu>
                     <Dropdown.Item eventKey="1" onClick={() => this.triggerInputFile()}>Change Picture</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
+                    <Dropdown.Item eventKey="2" onClick={() => this.deleteImage()}>Delete Picture</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </p>
@@ -141,6 +150,6 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-const mapDispatchToProps = { updateProfile }
+const mapDispatchToProps = { updateProfile, deleteImage }
 
 export default connect(mapStateToProps, mapDispatchToProps)(index)

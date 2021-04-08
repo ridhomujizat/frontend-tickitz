@@ -99,69 +99,41 @@ export const profile = (token) => {
   }
 }
 
-export const postProfile = (token, data) => {
+export const deleteImage = (token) => {
   return async dispatch => {
-    const {
-      firstName,
-      lastName,
-      phone
-    } = data
-    const params = new URLSearchParams()
-    params.append('firstName', firstName)
-    params.append('lastName', lastName)
-    params.append('phone', phone)
     try {
-      const response = await http(token).post('profile', params)
-      console.log(response)
-
       dispatch({
-        type: 'CREATE_PROFILE',
-        payload: response.data.results
-
+        type: 'SET_LOGIN_MESSAGE',
+        payload: null
       })
       dispatch({
-        type: 'CREATE_PROFILE_AUTH',
-        payload: response.data.results[0].firstName
+        type: 'SUCCESS_MESSAGE',
+        payload: null
       })
+      const response = await http(token).delete('profile/image')
       dispatch({
-        type: 'MESSAGE',
+        type: 'LOGIN',
         payload: {
-          profileAvailable: true,
-          message: ''
+          image: 'uploads/profile/profile-default.jpg'
         }
+      })
+      dispatch({
+        type: 'SUCCESS_MESSAGE',
+        payload: response.data.message
       })
     } catch (err) {
-      const { message } = err.response.data
-      dispatch({
-        type: 'MESSAGE',
-        payload: {
-          message: message
-        }
-      })
+      if (err.response) {
+        const { message } = err.response.data
+        dispatch({
+          type: 'SET_LOGIN_MESSAGE',
+          payload: message
+        })
+      } else {
+        dispatch({
+          type: 'SET_LOGIN_MESSAGE',
+          payload: 'Cant connect with server'
+        })
+      }
     }
   }
 }
-
-// export const updateProfile = (token, file) => {
-//   return async dispatch => {
-//     const {
-//       firstName,
-//       lastName,
-//       phone
-//     } = data
-//     const params = new URLSearchParams()
-//     params.append('firstName', firstName)
-//     params.append('lastName', lastName)
-//     params.append('phone', phone)
-//     dispatch({
-//       type: 'GET_PROFILE',
-//       payload: {
-//         image: response.data.result.image
-//       }
-//     })
-//     dispatch({
-//       type: 'LOGIN',
-//       payload: { image: response.data.result.image }
-//     })
-//   }
-// }
