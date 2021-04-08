@@ -12,6 +12,7 @@ can manage their profile.
 ### Requirements
  1. NodeJS v12 LTS
  2. Node_modules `yarn install`
+ 3. backend tickitz [`Link`](https://github.com/ridhomujizat/backend-tickitz)
 
 ### How to Install
  1. Make sure you had clone this repo 
