@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './index.scss'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Spinner } from 'react-bootstrap'
 import moment from 'moment'
 import http from '../../helper/http'
 import { connect } from 'react-redux'
@@ -10,16 +10,20 @@ const { REACT_APP_API_URL: API_URL } = process.env
 class OrderHistory extends Component {
   state = {
     history: [],
-    message: null
+    message: null,
+    isLoading: false
   }
   async componentDidMount () {
     const { token } = this.props.auth
     try {
+      await this.setState({ isLoading: true })
       const response = await http(token).get('/transaction/order-history/')
       console.log(response)
       this.setState({ history: response.data.results })
+      await this.setState({ isLoading: false })
     } catch (err) {
       if (err.response) {
+        await this.setState({ isLoading: false })
         const { message } = err.response
         this.setState({ message })
       }
@@ -35,43 +39,47 @@ class OrderHistory extends Component {
   render () {
     return (
       <>
-        {this.state.history.length !== 0
-          ? this.state.history.map((item, index) => {
-            return (
-              <div className='order-history-ticket mb-4' key={String(index)}>
-                <Row class='flex-md-row-reverse justify-content-between'>
-                  <Col
-                    xs={12}
-                    className='d-flex flex-row flex-wrap flex-md-row-reverse justify-content-between'
-                  >
-                    <img src={`${API_URL}${item.image}`} alt='' />
+        {this.state.isLoading
+          ? <div className='d-flex justify-content-center'>
+            <Spinner animation="border" variant="primary" />
+          </div>
+          : <>{this.state.history.length !== 0
+            ? this.state.history.map((item, index) => {
+              return (
+                <div className='order-history-ticket mb-4' key={String(index)}>
+                  <Row class='flex-md-row-reverse justify-content-between'>
+                    <Col
+                      xs={12}
+                      className='d-flex flex-row flex-wrap flex-md-row-reverse justify-content-between'
+                    >
+                      <img src={`${API_URL}${item.image}`} alt='' />
 
-                    <div className='history-text'>
-                      <p>{moment(item.date).format('LLLL')}</p>
-                      <h5>{item.title}</h5>
-                    </div>
-                  </Col>
-                </Row>
-                <hr />
-                <Row>
-                  <Col
-                    xs={12}
-                    className=' d-flex flex-row justify-content-between align-items-center'
-                  >
-                    <button
-                      type='button'
-                      className={`btn btn-${item.status === 'pending' ? 'warning' : 'success'}`}
-                      onClick={() => this.transaction(item.status, item.id)}>
-                      {item.status === 'pending' ? 'Compalete your payment' : 'Ticket in active'}
-                    </button>
-                  </Col>
-                </Row>
-              </div>
-            )
-          })
-          : <div>{this.state.message || 'Order some ticket'}</div>
+                      <div className='history-text'>
+                        <p>{moment(item.date).format('LLLL')}</p>
+                        <h5>{item.title}</h5>
+                      </div>
+                    </Col>
+                  </Row>
+                  <hr />
+                  <Row>
+                    <Col
+                      xs={12}
+                      className=' d-flex flex-row justify-content-between align-items-center'
+                    >
+                      <button
+                        type='button'
+                        className={`btn btn-${item.status === 'pending' ? 'warning' : 'success'}`}
+                        onClick={() => this.transaction(item.status, item.id)}>
+                        {item.status === 'pending' ? 'Compalete your payment' : 'Ticket in active'}
+                      </button>
+                    </Col>
+                  </Row>
+                </div>
+              )
+            })
+            : <div className='d-flex justify-content-center'>{this.state.message || 'Order some ticket'}</div>
 
-        }
+          }</>}
       </>
     )
   }

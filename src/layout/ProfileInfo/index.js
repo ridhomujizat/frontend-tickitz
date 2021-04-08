@@ -84,7 +84,7 @@ class index extends Component {
 
                   <Dropdown.Menu>
                     <Dropdown.Item eventKey="1" onClick={() => this.triggerInputFile()}>Change Picture</Dropdown.Item>
-                    <Dropdown.Item eventKey="2" onClick={() => this.deleteImage()}>Delete Picture</Dropdown.Item>
+                    <Dropdown.Item eventKey="2" onClick={() => this.deleteImage()} disabled={image && 'uploads/profile/profile-default.jpg'}>Delete Picture</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </p>
