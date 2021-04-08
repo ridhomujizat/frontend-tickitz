@@ -1,4 +1,8 @@
 # Tickitz - Ticket Booking
+<p float="left">
+<img width="48%" alt="Github" src="https://github.com/ridhomujizat/frontend-tickitz/blob/master/assets/Web%20tickitz.png" />
+<img width="48%" align="right" alt="Github" src="https://github.com/ridhomujizat/frontend-tickitz/blob/master/assets/Web%20tickitz%203.png" />
+</p>
 
 ### Introduction
 
